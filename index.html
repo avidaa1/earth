@@ -41,7 +41,12 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
    ONLY the mobile breakpoint below -- desktop keeps the original clean
    single-row layout unconditionally. */
 @media (max-width:900px){
-  #hdr{flex-wrap:wrap;min-height:var(--hdr);height:auto;padding:6px 8px;gap:6px}
+  /* Auto-center + auto-align every wrapped row -- justify-content:center
+     means each row of buttons centers itself within the available width
+     instead of left-packing with uneven empty space on the right (which
+     read as "messy" even once the overflow/gap bugs were fixed). Logo row
+     centers too for visual symmetry with the rows below it. */
+  #hdr{flex-wrap:wrap;justify-content:center;min-height:var(--hdr);height:auto;padding:8px 8px;gap:6px}
   #hdr .logo{font-size:13px;letter-spacing:2px}
   #hdr .logo span{display:none}
   #search-box{order:10;flex:1 1 100%;max-width:none}
