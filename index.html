@@ -8,6 +8,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://www.googletagmanager.com https://www.google-analytics.com; connect-src https://cdn.jsdelivr.net https://api.binance.com https://api.coingecko.com https://earthquake.usgs.gov https://api.alternative.me https://mempool.space https://api.open-meteo.com https://api.reliefweb.int https://query1.finance.yahoo.com https://en.wikipedia.org https://api.worldbank.org https://api.adsb.lol https://api.frankfurter.app https://api.wheretheiss.at https://api.gbif.org https://api.weather.gov https://air-quality-api.open-meteo.com https://volcanoes.usgs.gov https://eonet.gsfc.nasa.gov https://services.swpc.noaa.gov https://currentuvindex.com https://raw.githubusercontent.com https://gis.fema.gov https://api.diadata.org https://api.spacexdata.com https://api.carbonintensity.org.uk https://www.google-analytics.com; img-src 'self' data: blob: https://raw.githubusercontent.com https://cdn.jsdelivr.net; frame-ancestors 'none';">
 <meta http-equiv="X-Frame-Options" content="DENY">
 <meta name="referrer" content="no-referrer">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23050a14'/%3E%3Ccircle cx='32' cy='32' r='18' fill='%2300d4ff'/%3E%3Cpath d='M18 24c4 4 10 4 14 2s10-2 13 1' stroke='%23050a14' stroke-width='2.5' fill='none' opacity='0.65'/%3E%3Cpath d='M16 34c5 3 11 2 15-1s9-3 13 0' stroke='%23050a14' stroke-width='2.5' fill='none' opacity='0.5'/%3E%3Cellipse cx='32' cy='32' rx='27' ry='9' stroke='%2300d4ff' stroke-width='2' fill='none' opacity='0.85' transform='rotate(-18 32 32)'/%3E%3C/svg%3E"> <!-- distinctive AVIDAA EARTH favicon: cyan planet with orbital ring on dark navy, matches the app's own accent color -- was completely missing before, defaulting to the browser's generic icon in bookmark bars/tabs -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-G8M1YZQ8WF"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-G8M1YZQ8WF');</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -28,9 +29,24 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
 #cv{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;display:block}
 
 /* ── HEADER ── */
-#hdr{position:fixed;top:0;left:0;right:0;height:var(--hdr);z-index:50;
+#hdr{position:fixed;top:0;left:0;right:0;min-height:var(--hdr);height:auto;z-index:50;
   background:rgba(0,0,10,0.88);border-bottom:1px solid rgba(0,212,255,0.12);
-  backdrop-filter:blur(10px);display:flex;align-items:center;padding:0 10px;gap:8px}
+  backdrop-filter:blur(10px);display:flex;flex-wrap:nowrap;align-items:center;padding:0 10px;gap:8px}
+/* Desktop/wide viewports: single row, exactly as before -- flex-wrap:wrap
+   was previously applied UNCONDITIONALLY (no media query gate), which made
+   the header wrap messily even on comfortably wide desktop viewports where
+   everything fits fine on one row (confirmed via screenshot: AVIDAA button
+   isolated oversized on its own row, REAL ROTATE stranded alone below it,
+   even though there was plenty of horizontal space). Wrap is now gated to
+   ONLY the mobile breakpoint below -- desktop keeps the original clean
+   single-row layout unconditionally. */
+@media (max-width:900px){
+  #hdr{flex-wrap:wrap;min-height:var(--hdr);height:auto;padding:6px 8px;gap:6px}
+  #hdr .logo{font-size:13px;letter-spacing:2px}
+  #hdr .logo span{display:none}
+  #search-box{order:10;flex:1 1 100%;max-width:none}
+  #hdr-clock{margin-left:0}
+}
 #hdr .logo{font-size:15px;font-weight:700;letter-spacing:3px;color:var(--accent);white-space:nowrap}
 #hdr-clock{display:flex;flex-direction:column;align-items:flex-end;margin-left:4px;margin-right:2px;flex-shrink:0}
 #hdr-clock .clk-time{font-size:13px;font-weight:700;color:var(--accent);letter-spacing:2px;line-height:1.1;font-family:var(--font)}
@@ -81,6 +97,22 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(
   letter-spacing:2px;cursor:pointer;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.3);
   text-decoration:none;display:inline-block;line-height:1.3}
 @keyframes rbow{0%{background-position:0%}100%{background-position:200%}}
+/* margin-left:auto on #back-home (above) is a desktop-only trick -- pushes
+   it to the far right of a single unwrapped row. Once the header wraps
+   (see @media max-width:900px above), that same auto-margin instead pushes
+   the button to the far right of WHATEVER row it lands on, leaving a large
+   ugly empty gap before it -- this was the actual cause of the "unorganized,
+   AVIDAA button extra big" look. This override MUST come after the base
+   #back-home rule above in source order, or the unconditional margin-left:
+   auto wins the cascade regardless of the media query (confirmed via a
+   direct computed-style check: without correct ordering, marginLeft stayed
+   493px even inside the matching media query). Placed here, after, so it
+   correctly overrides at narrow widths and just flows in sequence like a
+   normal wrapped item instead. */
+@media (max-width:900px){
+  #back-home{margin-left:0}
+}
+
 
 /* ── LAYER DRAWER (left) ── */
 #drawer{position:fixed;top:var(--hdr);left:-320px;bottom:0;width:300px;
@@ -623,8 +655,8 @@ var LAYERS = {
   parks:   {label:'National Parks', col:'#22c55e', group:'EARTH',           meshes:[], active:true,  icon:'&#127794;'},
   resources:{label:'World Resources', col:'#fbbf24', group:'RESOURCES',       meshes:[], active:true,  icon:'&#9830;'},
   iss:     {label:'ISS Live Track',  col:'#00ffcc', group:'SPACE',           meshes:[], active:true,  icon:'&#9632;'},
-  hubble:  {label:'Hubble Live Track', col:'#f472b6', group:'SPACE',        meshes:[], active:true,  icon:'&#128301;'},
-  tiangong:{label:'Tiangong Live Track', col:'#fbbf24', group:'SPACE',      meshes:[], active:true,  icon:'&#127760;'},
+  hubble:  {label:'Hubble Telescope', col:'#f472b6', group:'SPACE',        meshes:[], active:true,  icon:'&#128301;'},
+  tiangong:{label:'Tiangong Station', col:'#fbbf24', group:'SPACE',      meshes:[], active:true,  icon:'&#127760;'},
   subsolar:{label:'Sub-Solar Point', col:'#fde047', group:'SPACE',           meshes:[], active:true,  icon:'&#9728;'},
   moon:    {label:'The Moon',       col:'#d1d5db', group:'SPACE',           meshes:[], active:true,  icon:'&#127768;'},
   borders: {label:'Country Borders',col:'#fbbf24', group:'MAP',             meshes:[], active:true,  icon:'&#9635;'},
@@ -652,8 +684,8 @@ var SOURCES = {
   stocks:  {label:'Yahoo Finance',  interval:120,  lastFetch:0, status:'idle', retries:0},
   weather: {label:'Open-Meteo',     interval:600,  lastFetch:0, status:'idle', retries:0},
   iss:     {label:'wheretheiss.at', interval:5,    lastFetch:0, status:'idle', retries:0},
-  hubble:  {label:'wheretheiss.at (Hubble)', interval:5, lastFetch:0, status:'idle', retries:0},
-  tiangong:{label:'wheretheiss.at (Tiangong)', interval:5, lastFetch:0, status:'idle', retries:0},
+  hubble:  {label:'Hubble (static)', interval:0, lastFetch:0, status:'static', retries:0},
+  tiangong:{label:'Tiangong (static)', interval:0, lastFetch:0, status:'static', retries:0},
   gbif:    {label:'GBIF Biodiversity', interval:600, lastFetch:0, status:'idle', retries:0},
 };
 
@@ -700,6 +732,20 @@ function setProgress(pct,msg){
 }
 
 // ── INIT (DOMContentLoaded safe — called after DOM ready) ──────────────
+// Measures the header's ACTUAL rendered height (which now varies -- it
+// wraps to 2+ rows on narrow/mobile screens) and feeds it back into the
+// --hdr CSS custom property, so every element positioned relative to
+// var(--hdr) (drawer, panel, radar badge) stays correctly aligned under
+// the header regardless of how many rows it wrapped into. Runs on load,
+// on resize, and on orientation change (mobile rotation changes wrap count).
+function updateHdrHeight(){
+  var hdr = document.getElementById('hdr');
+  if(!hdr) return;
+  document.documentElement.style.setProperty('--hdr', hdr.offsetHeight + 'px');
+}
+window.addEventListener('resize', updateHdrHeight);
+window.addEventListener('orientationchange', function(){ setTimeout(updateHdrHeight, 100); });
+
 function initGlobe(){
   var canvas = document.getElementById('cv');
   var W=window.innerWidth, H=window.innerHeight;
@@ -2649,13 +2695,19 @@ function fetchISS(){
     }).catch(function(){ SOURCES.iss.retries=(SOURCES.iss.retries||0)+1; SOURCES.iss.status='err'; });
 }
 
-// ── HUBBLE SPACE TELESCOPE — same wheretheiss.at API, different real
-// NORAD ID (20580, confirmed). The API isn't ISS-specific despite its name --
-// it serves any tracked object's live position. Same true-scale altitude math.
+// ── HUBBLE SPACE TELESCOPE — STATIC representative position, NOT live.
+// CORRECTION: wheretheiss.at's own documentation confirms it has only ever
+// supported one object -- the ISS (NORAD 25544). "Currently, there is only
+// one... But in the future, we plan to provide more." It does NOT serve any
+// arbitrary NORAD ID despite the earlier assumption here that it did --
+// NORAD 20580 (Hubble) returns a genuine 404, confirmed via live console
+// output, every single time. No free, no-API-key, CORS-enabled live
+// tracking source exists for Hubble specifically. Rather than keep hammering
+// a permanently-dead endpoint every 5s and silently mislabeling this as
+// "live," it's now a single static point along Hubble's real orbital
+// inclination (28.5 degrees), clearly labeled as illustrative, not tracked.
 var hubbleMesh = null, hubbleTrailLine = null, hubbleTrailPoints = [];
-var hubbleData = {lat:0,lon:0,alt:540,vel:27000};
-var tiangongMesh = null, tiangongTrailLine = null, tiangongTrailPoints = [];
-var tiangongData = {lat:0,lon:0,alt:390,vel:27600};
+var hubbleData = {lat:20.0, lon:-80.0, alt:535, vel:27300}; // real average altitude/velocity, illustrative position
 function initHubbleMesh(){
   var geo = new THREE.OctahedronGeometry(0.024, 0); // enlarged from 0.014 -- easier to click
   var mat = new THREE.MeshBasicMaterial({color:0xf472b6});
@@ -2668,38 +2720,22 @@ function initHubbleMesh(){
   scene.add(hubbleTrailLine);
   LAYERS.hubble.meshes.push(hubbleMesh);
   allMeshes.push(hubbleMesh);
-  hubbleMesh.userData = {type:'hubble',label:'HUBBLE LIVE TRACK',name:'Hubble Space Telescope',lat:0,lon:0};
-  fetchHubble();
-  setInterval(fetchHubble, 5000);
-}
-function fetchHubble(){
-  SOURCES.hubble.status = 'loading';
-  fetch('https://api.wheretheiss.at/v1/satellites/20580')
-    .then(function(r){ return r.json(); })
-    .then(function(d){
-      SOURCES.hubble.lastFetch = Date.now();
-      SOURCES.hubble.status = 'fresh';
-      hubbleData = {lat:d.latitude, lon:d.longitude, alt:Math.round(d.altitude), vel:Math.round(d.velocity)};
-      var r = trueScaleOrbitRadius(d.altitude);
-      var v = latLonToVec3(d.latitude, d.longitude, r);
-      if(hubbleMesh){
-        hubbleMesh.position.copy(v);
-        hubbleMesh.visible = LAYERS.hubble.active;
-        hubbleTrailPoints.push(v.clone());
-        if(hubbleTrailPoints.length > ISS_TRAIL_MAX) hubbleTrailPoints.shift();
-        var pts = new Float32Array(hubbleTrailPoints.length * 3);
-        for(var i=0; i<hubbleTrailPoints.length; i++){
-          pts[i*3]=hubbleTrailPoints[i].x; pts[i*3+1]=hubbleTrailPoints[i].y; pts[i*3+2]=hubbleTrailPoints[i].z;
-        }
-        hubbleTrailLine.geometry.setAttribute('position', new THREE.BufferAttribute(pts,3));
-        hubbleTrailLine.geometry.setDrawRange(0, hubbleTrailPoints.length);
-        hubbleTrailLine.geometry.needsUpdate = true;
-        hubbleTrailLine.visible = LAYERS.hubble.active;
-      }
-    }).catch(function(){ SOURCES.hubble.retries=(SOURCES.hubble.retries||0)+1; SOURCES.hubble.status='err'; });
+  hubbleMesh.userData = {type:'hubble',label:'HUBBLE TELESCOPE',name:'Hubble Space Telescope',lat:hubbleData.lat,lon:hubbleData.lon};
+  var r = trueScaleOrbitRadius(hubbleData.alt);
+  var v = latLonToVec3(hubbleData.lat, hubbleData.lon, r);
+  hubbleMesh.position.copy(v);
+  SOURCES.hubble.status = 'static';
 }
 
 // ISS panel
+// ── TIANGONG SPACE STATION — STATIC representative position, NOT live.
+// Same correction as Hubble above: wheretheiss.at only ever supported ISS
+// (NORAD 25544). NORAD 48274 returns a genuine 404, confirmed via live
+// console output. No free, no-API-key, CORS-enabled live tracking source
+// exists for Tiangong specifically. Static point along its real orbital
+// inclination (41.5 degrees), clearly labeled as illustrative, not tracked.
+var tiangongMesh = null, tiangongTrailLine = null, tiangongTrailPoints = [];
+var tiangongData = {lat:30.0, lon:110.0, alt:390, vel:27600}; // real average altitude/velocity, illustrative position
 function initTiangongMesh(){
   var geo = new THREE.OctahedronGeometry(0.024, 0);
   var mat = new THREE.MeshBasicMaterial({color:0xfbbf24});
@@ -2712,87 +2748,59 @@ function initTiangongMesh(){
   scene.add(tiangongTrailLine);
   LAYERS.tiangong.meshes.push(tiangongMesh);
   allMeshes.push(tiangongMesh);
-  tiangongMesh.userData = {type:'tiangong',label:'TIANGONG LIVE TRACK',name:'Tiangong Space Station',lat:0,lon:0};
-  fetchTiangong();
-  setInterval(fetchTiangong, 5000);
-}
-function fetchTiangong(){
-  SOURCES.tiangong.status = 'loading';
-  fetch('https://api.wheretheiss.at/v1/satellites/48274')
-    .then(function(r){ return r.json(); })
-    .then(function(d){
-      SOURCES.tiangong.lastFetch = Date.now();
-      SOURCES.tiangong.status = 'fresh';
-      tiangongData = {lat:d.latitude, lon:d.longitude, alt:Math.round(d.altitude), vel:Math.round(d.velocity)};
-      var r = trueScaleOrbitRadius(d.altitude);
-      var v = latLonToVec3(d.latitude, d.longitude, r);
-      if(tiangongMesh){
-        tiangongMesh.position.copy(v);
-        tiangongMesh.visible = LAYERS.tiangong.active;
-        tiangongTrailPoints.push(v.clone());
-        if(tiangongTrailPoints.length > ISS_TRAIL_MAX) tiangongTrailPoints.shift();
-        var pts = new Float32Array(tiangongTrailPoints.length * 3);
-        for(var i=0; i<tiangongTrailPoints.length; i++){
-          pts[i*3]=tiangongTrailPoints[i].x; pts[i*3+1]=tiangongTrailPoints[i].y; pts[i*3+2]=tiangongTrailPoints[i].z;
-        }
-        tiangongTrailLine.geometry.setAttribute('position', new THREE.BufferAttribute(pts,3));
-        tiangongTrailLine.geometry.setDrawRange(0, tiangongTrailPoints.length);
-        tiangongTrailLine.geometry.needsUpdate = true;
-        tiangongTrailLine.visible = LAYERS.tiangong.active;
-      }
-    }).catch(function(){ SOURCES.tiangong.retries=(SOURCES.tiangong.retries||0)+1; SOURCES.tiangong.status='err'; });
+  tiangongMesh.userData = {type:'tiangong',label:'TIANGONG STATION',name:'Tiangong Space Station',lat:tiangongData.lat,lon:tiangongData.lon};
+  var r = trueScaleOrbitRadius(tiangongData.alt);
+  var v = latLonToVec3(tiangongData.lat, tiangongData.lon, r);
+  tiangongMesh.position.copy(v);
+  SOURCES.tiangong.status = 'static';
 }
 function panelTiangong(){
   var col='#fbbf24';
-  showLoading('TIANGONG LIVE TRACK','Tiangong Space Station',col);
+  showLoading('TIANGONG STATION','Tiangong Space Station',col);
   document.getElementById('panel').classList.add('open');
-  var h2='<span class="pn-type" style="background:rgba(251,191,36,0.1);color:'+col+'">TIANGONG LIVE TRACK</span>'+
-    liveBadge()+
+  var h2='<span class="pn-type" style="background:rgba(251,191,36,0.1);color:'+col+'">TIANGONG STATION</span>'+
     '<div class="pn-name">Tiangong Space Station</div>'+
-    '<div class="pn-sub">NORAD 48274 \u2022 wheretheiss.at live \u2022 true-scale altitude</div>';
+    '<div class="pn-sub">NORAD 48274 \u2022 static representative position \u2022 true-scale altitude</div>';
   h2+='<div class="pricebox" style="border-color:rgba(251,191,36,0.2)">'+
-    '<div class="plabel">ALTITUDE</div>'+
+    '<div class="plabel">TYPICAL ALTITUDE</div>'+
     '<div class="price" style="color:'+col+'">'+tiangongData.alt+' km</div>'+
-    '<div class="pch" style="color:var(--text2)">'+tiangongData.vel.toLocaleString()+' km/h</div>'+
+    '<div class="pch" style="color:var(--text2)">'+tiangongData.vel.toLocaleString()+' km/h (typical orbital velocity)</div>'+
   '</div>';
   h2+=sgrid([
-    ['LATITUDE', tiangongData.lat.toFixed(4)+'\u00b0',''],
-    ['LONGITUDE',tiangongData.lon.toFixed(4)+'\u00b0',''],
+    ['ILLUSTRATIVE LAT', tiangongData.lat.toFixed(1)+'\u00b0',''],
+    ['ILLUSTRATIVE LON',tiangongData.lon.toFixed(1)+'\u00b0',''],
+    ['ORBITAL INCLINATION','41.5\u00b0 (real)',''],
     ['LAUNCHED','April 29, 2021 (Tianhe core module)',''],
-    ['DATA SOURCE','wheretheiss.at (NORAD 48274)',''],
   ]);
   h2+=row('Orbit','Low Earth Orbit \u2014 ~390km, similar altitude to the ISS');
   h2+=row('Mission','China\u2019s independently developed modular space station, operational since 2021');
-  h2+='<div class="wikibox">China\u2019s third generation of space station hardware (after Tiangong-1 and -2), and its first long-duration modular station \u2014 crewed continuously since 2022.</div>';
-  h2+=lastUpdatedRow(SOURCES.tiangong.lastFetch);
-  h2+=srcFooter('wheretheiss.at (NORAD 48274) \u2022 AVIDAA EARTH');
+  h2+='<div class="wikibox">Position shown is a static illustrative point along Tiangong\u2019s real orbital inclination, not a live track. No free, key-free, CORS-enabled API currently provides live position data for this object \u2014 the wheretheiss.at API used for the ISS marker has only ever supported the ISS itself (NORAD 25544), confirmed via its own documentation.</div>';
+  h2+=srcFooter('Static illustrative position \u2022 AVIDAA EARTH');
   document.getElementById('pan-body').innerHTML=h2;
 }
 
 function panelHubble(){
   var col='#f472b6';
-  showLoading('HUBBLE LIVE TRACK','Hubble Space Telescope',col);
+  showLoading('HUBBLE TELESCOPE','Hubble Space Telescope',col);
   document.getElementById('panel').classList.add('open');
-  var h2='<span class="pn-type" style="background:rgba(244,114,182,0.1);color:'+col+'">HUBBLE LIVE TRACK</span>'+
-    liveBadge()+
+  var h2='<span class="pn-type" style="background:rgba(244,114,182,0.1);color:'+col+'">HUBBLE TELESCOPE</span>'+
     '<div class="pn-name">Hubble Space Telescope</div>'+
-    '<div class="pn-sub">NORAD 20580 \u2022 wheretheiss.at live \u2022 true-scale altitude</div>';
+    '<div class="pn-sub">NORAD 20580 \u2022 static representative position \u2022 true-scale altitude</div>';
   h2+='<div class="pricebox" style="border-color:rgba(244,114,182,0.2)">'+
-    '<div class="plabel">ALTITUDE</div>'+
+    '<div class="plabel">TYPICAL ALTITUDE</div>'+
     '<div class="price" style="color:'+col+'">'+hubbleData.alt+' km</div>'+
-    '<div class="pch" style="color:var(--text2)">'+hubbleData.vel.toLocaleString()+' km/h</div>'+
+    '<div class="pch" style="color:var(--text2)">'+hubbleData.vel.toLocaleString()+' km/h (typical orbital velocity)</div>'+
   '</div>';
   h2+=sgrid([
-    ['LATITUDE', hubbleData.lat.toFixed(4)+'\u00b0',''],
-    ['LONGITUDE',hubbleData.lon.toFixed(4)+'\u00b0',''],
+    ['ILLUSTRATIVE LAT', hubbleData.lat.toFixed(1)+'\u00b0',''],
+    ['ILLUSTRATIVE LON',hubbleData.lon.toFixed(1)+'\u00b0',''],
+    ['ORBITAL INCLINATION','28.5\u00b0 (real)',''],
     ['LAUNCHED','April 24, 1990',''],
-    ['DATA SOURCE','wheretheiss.at (NORAD 20580)',''],
   ]);
-  h2+=row('Orbit','Low Earth Orbit \u2014 ~540km, well above the ISS');
+  h2+=row('Orbit','Low Earth Orbit \u2014 ~535km, well above the ISS');
   h2+=row('Mission','30+ years of deep-space imaging, still operational');
-  h2+='<div class="wikibox">Same live tracking API as the ISS marker \u2014 despite its name, wheretheiss.at serves any tracked NORAD-catalog object, not just the ISS. Both markers use identical true-scale altitude math.</div>';
-  h2+=lastUpdatedRow(SOURCES.hubble.lastFetch);
-  h2+=srcFooter('wheretheiss.at (NORAD 20580) \u2022 NASA \u2022 AVIDAA EARTH');
+  h2+='<div class="wikibox">Position shown is a static illustrative point along Hubble\u2019s real orbital inclination, not a live track. The wheretheiss.at API used for the ISS marker has only ever supported the ISS itself (NORAD 25544), confirmed via its own documentation \u2014 no free, key-free, CORS-enabled API currently provides live position data for Hubble.</div>';
+  h2+=srcFooter('Static illustrative position \u2022 NASA \u2022 AVIDAA EARTH');
   document.getElementById('pan-body').innerHTML=h2;
 }
 
@@ -7226,6 +7234,7 @@ function init(){
   setTimeout(hideLoadScreen, 10000);
 
   try{
+    updateHdrHeight(); // measure real header height immediately -- must happen before anything positions itself relative to var(--hdr)
     setProgress(5,'Loading THREE.js scene...');
     // loadLayerPrefs() intentionally NOT called -- every page load is now a
     // genuine fresh spawn: all layers on except labels/countrynames, every
