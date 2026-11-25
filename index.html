@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>AVIDAA EARTH — Global Intelligence Globe</title>
 <meta name="description" content="Real-time 3D globe. Finance, resources, agriculture, pharma, tech, nature, disaster alerts, space, and more -- 25+ live data layers, zero hardcoded data. AVIDAA EARTH v2.">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; connect-src https://cdn.jsdelivr.net https://api.binance.com https://api.coingecko.com https://earthquake.usgs.gov https://api.alternative.me https://mempool.space https://api.open-meteo.com https://api.reliefweb.int https://query1.finance.yahoo.com https://en.wikipedia.org https://api.worldbank.org https://api.adsb.lol https://api.frankfurter.app https://api.wheretheiss.at https://api.gbif.org https://api.weather.gov https://air-quality-api.open-meteo.com https://volcanoes.usgs.gov https://eonet.gsfc.nasa.gov https://services.swpc.noaa.gov https://currentuvindex.com https://raw.githubusercontent.com https://gis.fema.gov https://api.diadata.org https://api.spacexdata.com https://api.carbonintensity.org.uk; img-src 'self' data: blob: https://raw.githubusercontent.com https://cdn.jsdelivr.net;">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; connect-src 'self' https://api.frankfurter.dev https://www.gdacs.org https://api.ioda.inetintel.cc.gatech.edu https://tle.ivanstanojevic.me https://maps.mail.ru https://overpass-api.de https://ll.thespacedevs.com https://cdn.jsdelivr.net https://api.binance.com https://api.coingecko.com https://earthquake.usgs.gov https://api.alternative.me https://mempool.space https://api.open-meteo.com https://api.reliefweb.int https://query1.finance.yahoo.com https://en.wikipedia.org https://api.worldbank.org https://api.adsb.lol https://api.frankfurter.app https://api.wheretheiss.at https://api.gbif.org https://api.weather.gov https://air-quality-api.open-meteo.com https://volcanoes.usgs.gov https://eonet.gsfc.nasa.gov https://services.swpc.noaa.gov https://currentuvindex.com https://raw.githubusercontent.com https://gis.fema.gov https://api.diadata.org https://api.spacexdata.com https://api.carbonintensity.org.uk; img-src 'self' data: blob: https://raw.githubusercontent.com https://cdn.jsdelivr.net;">
 <meta name="referrer" content="no-referrer">
 <!-- distinctive AVIDAA EARTH favicon: cyan planet with orbital ring on dark navy, matches the app's own accent color -- was completely missing before, defaulting to the browser's generic icon in bookmark bars/tabs -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -366,7 +366,22 @@ canvas.spark{width:100%;height:38px;display:block;border-radius:2px}
 .av-stamp{white-space:nowrap;font:700 var(--av-fs-0)/1.4 var(--av-mono);letter-spacing:0}
 .av-footer--bar{position:fixed;left:0;right:0;bottom:0;z-index:2147482000;padding:0 var(--av-s-3);height:28px;flex-direction:row;justify-content:center;pointer-events:none;border-top:0;background:rgba(5,8,24,.7)}
 @media (prefers-reduced-motion:reduce){.av-btn,.av-card,.av-back,.av-tab{transition:none!important}.av-card:hover{transform:none}html{scroll-behavior:auto}}
-</style></head>
+</style><style id="sig-css-20261125">
+button:focus,a:focus,.layer-row:focus,input:focus,#radar .radar-title:focus,button:focus-visible,a:focus-visible,.layer-row:focus-visible,input:focus-visible{outline:3px solid #ffd93d!important;outline-offset:2px}
+#panel a,#pan-body a{display:inline-flex;align-items:center;min-height:44px;min-width:44px}
+#radar .radar-title{min-height:44px}
+.hdr-btn,.drawer-hdr button,#pan-hdr button{min-height:44px;min-width:44px}
+.layer-row{min-height:44px}
+#back-home{min-height:44px;display:inline-flex;align-items:center}
+.sig-split{display:flex;gap:8px;margin:8px 0}.sig-box{flex:1;border:1px solid rgba(0,212,255,.35);border-radius:8px;padding:8px 10px;display:flex;flex-direction:column}
+.sig-big{font:800 26px/1.1 var(--font)}.sig-box span{font-size:12px;color:var(--text2)}
+.sig-bar{display:flex;height:14px;border-radius:7px;overflow:hidden;border:1px solid rgba(0,212,255,.35);margin:6px 0}.sig-bar .sig-m{background:#00d4ff;display:block}.sig-bar .sig-p{background:#ff8a3d;display:block}
+.sig-t{width:100%;border-collapse:collapse;font-size:11px;margin:6px 0 12px}.sig-t th,.sig-t td{padding:4px 3px;text-align:left;border-bottom:1px solid rgba(0,212,255,.15);vertical-align:top}.sig-t td.n{text-align:right}.sig-tot td{font-weight:800}
+.sig-err{display:block;color:#ff8a8a;font-size:10px;line-height:1.3}.sig-val{color:#9bb4d0}
+#sig-ret{display:none;position:fixed;left:50%;top:50%;width:30px;height:30px;margin:-15px 0 0 -15px;border:2px solid #ffd93d;border-radius:50%;pointer-events:none;z-index:40;opacity:.8}
+#sig-ret[data-paused="1"]{border-style:dashed}
+</style>
+</head>
 <body>
 
 
@@ -2434,8 +2449,8 @@ function buildGlobe(){
     var bc = document.createElement('canvas');
     bc.width = 4096; bc.height = 2048;
     var bctx = bc.getContext('2d');
-    bctx.fillStyle = '#000800'; bctx.fillRect(0,0,4096,2048);
-    bctx.strokeStyle = 'rgba(0,255,0,0.08)'; bctx.lineWidth = 1;
+    bctx.fillStyle = '#0c0600'; bctx.fillRect(0,0,4096,2048);
+    bctx.strokeStyle = 'rgba(255,176,0,0.12)'; bctx.lineWidth = 1;
     for(var lon=-180; lon<=180; lon+=15){
       var x = (lon+180)/360*4096;
       bctx.beginPath(); bctx.moveTo(x,0); bctx.lineTo(x,2048); bctx.stroke();
@@ -2447,9 +2462,9 @@ function buildGlobe(){
     COUNTRIES_EMBEDDED.forEach(function(c){
       bctx.beginPath();
       (c.r||[]).forEach(function(ring){ ringPath2(bctx, ring); });
-      bctx.fillStyle = 'rgba(0,40,0,0.55)';
+      bctx.fillStyle = 'rgba(70,38,0,0.55)';
       bctx.fill('evenodd');
-      bctx.strokeStyle = 'rgba(0,255,60,0.75)';
+      bctx.strokeStyle = 'rgba(255,184,40,0.85)';
       bctx.lineWidth = 1.0;
       bctx.stroke();
     });
@@ -4201,7 +4216,7 @@ function fetchSeismic(){
         );
         m.position.copy(latLonToVec3(lat,lon,1.018));
         addNode('seismic',m,{type:'seismic',label:inVenezuela?'\ud83d\udea8 VENEZUELA ALARM':'SEISMIC EVENT',
-          name:'M'+mag.toFixed(1)+' Earthquake',mag:mag.toFixed(1),depth:depth,time:time,lat:lat,lon:lon,
+          name:'M'+mag.toFixed(1)+' Earthquake',t:eq.properties.time,mag:mag.toFixed(1),depth:depth,time:time,lat:lat,lon:lon,
           alarmRegion:inVenezuela?'Venezuela':null});
       });
       SOURCES.seismic.lastFetch=Date.now(); SOURCES.seismic.status='fresh';
@@ -5081,10 +5096,16 @@ function fetchMarketTicker(){
     .then(function(d){var v=d.data[0];updateTick('tick-fg','FEAR/GREED',v.value+' '+v.value_classification,v.value>50?'up':'dn');SOURCES.fear.lastFetch=Date.now();SOURCES.fear.status='fresh';})
     .catch(function(){SOURCES.fear.retries=(SOURCES.fear.retries||0)+1; SOURCES.fear.status='err';});
   // FX rates
-  fetch('https://api.frankfurter.app/latest?from=USD&to=EUR,GBP,JPY,CNY,CHF')
-    .then(function(r){return r.json();})
-    .then(function(d){setCache('fxRates',d.rates,3600000);SOURCES.fx.lastFetch=Date.now();SOURCES.fx.status='fresh';})
-    .catch(function(){SOURCES.fx.retries=(SOURCES.fx.retries||0)+1; SOURCES.fx.status='err';});
+  // frankfurter.app answers no CORS header from this origin (checked 2026-11-25); the same service now lives at frankfurter.dev and does
+  fetch('https://api.frankfurter.dev/v1/latest?base=USD&symbols=EUR,GBP,JPY,CNY,CHF')
+    .then(function(r){if(!r.ok)throw new Error('http '+r.status);return r.json();})
+    .then(function(d){if(!d||!d.rates)throw new Error('no rates');setCache('fxRates',d.rates,3600000);SOURCES.fx.lastFetch=Date.now();SOURCES.fx.status='fresh';SOURCES.fx.retries=0;})
+    .catch(function(){
+      fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json')
+        .then(function(r){if(!r.ok)throw new Error('http '+r.status);return r.json();})
+        .then(function(d){var u=d&&d.usd;if(!u)throw new Error('no rates');var rt={EUR:u.eur,GBP:u.gbp,JPY:u.jpy,CNY:u.cny,CHF:u.chf};setCache('fxRates',rt,3600000);SOURCES.fx.lastFetch=Date.now();SOURCES.fx.status='fresh';SOURCES.fx.retries=0;})
+        .catch(function(){SOURCES.fx.retries=(SOURCES.fx.retries||0)+1; SOURCES.fx.status='down'; SOURCES.fx.checked=new Date().toISOString().slice(0,10);});
+    });
 }
 </script>
 <script>
@@ -6945,6 +6966,8 @@ function updateRadar(){
       } else {
         dot.style.background='#f59e0b'; age.textContent='~';
       }
+    } else if(s.status==='down'){
+      dot.classList.add('err'); age.textContent='down '+(s.checked||'');
     } else if(s.status==='loading'){
       dot.style.background='#60a5fa'; age.textContent='...';
     } else {
@@ -7438,6 +7461,531 @@ if(document.readyState==='loading'){
 </script>
 
 <div style="display:none">AVIDAA EARTH v2.0 \u2014 Real-time global intelligence globe, 25+ live layers. Sources: USGS, NOAA, NASA, World Bank, FEMA, GBIF, Open-Meteo, Yahoo Finance, Binance, CoinGecko, ReliefWeb, adsb.lol, wheretheiss.at, currentuvindex.com. Educational use only. AVIDAA * IO</div>
+<script id="av-signals-20261125">
+/* AVIDAA EARTH signals: real-signal node layers and sourced reference layers.
+   Every node is data from a named source with a time and an age. Stale nodes fade. A source that cannot be reached from a browser is shown as 'source down' with the date it was checked.
+   Every fetched value is untrusted: textContent only, invisible Unicode stripped and counted, text capped, links only to allowlisted official domains shown as plain text. */
+(function () {
+'use strict';
+var CHECKED = '2026-11-25';
+var STATS = { stripped: 0, droppedUrls: 0, keptUrls: 0, records: 0 };
+var INVIS = new RegExp('[\\u200B-\\u200F\\u2028-\\u202F\\u2060-\\u206F\\uFEFF\\u00AD\\u034F\\u061C\\u115F\\u1160\\u17B4\\u17B5\\u180B-\\u180F\\u3164\\uFE00-\\uFE0F]|\\uDB40[\\uDC00-\\uDC7F]|\\uDB40[\\uDD00-\\uDDEF]|[\\u0000-\\u0008\\u000B-\\u001F\\u007F-\\u009F]', 'g');
+function clean(v, max) {
+  if (v === null || v === undefined) return '';
+  var s = String(v), n = s.length;
+  s = s.replace(INVIS, '');
+  STATS.stripped += n - s.length;
+  s = s.replace(/\s+/g, ' ').replace(/^ | $/g, '');
+  max = max || 120;
+  if (s.length > max) s = s.slice(0, max - 1) + '…';
+  return s;
+}
+function num(v, lo, hi, dflt) { var n = typeof v === 'string' ? parseFloat(v) : v; if (typeof n !== 'number' || !isFinite(n) || n < lo || n > hi) return dflt; return n; }
+function safeUrl(u) {
+  if (typeof u !== 'string') { STATS.droppedUrls++; return null; }
+  u = u.replace(INVIS, '');
+  var bad = /[\s\\<>"'`]/.test(u) || !/^https:\/\//i.test(u);
+  var rest = u.slice(8), end = rest.search(/[\/?#]/), auth = (end < 0 ? rest : rest.slice(0, end)).toLowerCase();
+  if (bad || !auth || auth.indexOf('@') >= 0 || /%/.test(auth)) { STATS.droppedUrls++; return null; }
+  auth = auth.replace(/:443$/, '');
+  if (/:/.test(auth) || auth.indexOf('xn--') >= 0 || !/^[a-z0-9.-]+$/.test(auth) || auth.charAt(0) === '.' || auth.slice(-1) === '.') { STATS.droppedUrls++; return null; }
+  var ok = false, i;
+  for (i = 0; i < ALLOW.length; i++) { var d = ALLOW[i]; if (auth === d || (auth.length > d.length && auth.slice(-d.length - 1) === '.' + d)) { ok = true; break; } }
+  if (!ok) { STATS.droppedUrls++; return null; }
+  STATS.keptUrls++;
+  return { href: 'https://' + auth + (end < 0 ? '/' : rest.slice(end)), host: auth };
+}
+var ALLOW = ['gdacs.org', 'usgs.gov', 'nasa.gov', 'gatech.edu', 'noaa.gov', 'weather.gov', 'celestrak.org', 'ivanstanojevic.me', 'thespacedevs.com', 'submarinecablemap.com', 'openstreetmap.org', 'safecast.org', 'wheretheiss.at',
+  'spacex.com', 'esa.int', 'jaxa.jp', 'isro.gov.in', 'ulalaunch.com', 'blueorigin.com', 'arianespace.com', 'rocketlabusa.com', 'roscosmos.ru', 'cnsa.gov.cn',
+  'tsmc.com', 'nvidia.com', 'amd.com', 'skhynix.com', 'gf.com', 'asml.com', 'cerebras.ai', 'graphcore.ai', 'bostondynamics.com', 'kuka.com'];
+var CENT = {"AW":[12.5,-70.0],"AF":[33,65],"AO":[-12.5,18.5],"AI":[18.2,-63.2],"AX":[60.1,19.9],"AL":[41,20],"AD":[42.5,1.5],"AE":[24,54],"AR":[-34,-64],"AM":[40,45],"AS":[-14.3,-170],"AQ":[-90,0],"TF":[-49.2,69.2],"AG":[17.1,-61.8],"AU":[-27,133],"AT":[47.3,13.3],"AZ":[40.5,47.5],"BI":[-3.5,30],"BE":[50.8,4],"BJ":[9.5,2.2],"BF":[13,-2],"BD":[24,90],"BG":[43,25],"BH":[26,50.5],"BS":[24.2,-76],"BA":[44,18],"BL":[18.5,-63.4],"SH":[-15.9,-5.7],"BY":[53,28],"BZ":[17.2,-88.8],"BM":[32.3,-64.8],"BO":[-17,-65],"BQ":[12.2,-68.2],"BR":[-10,-55],"BB":[13.2,-59.5],"BN":[4.5,114.7],"BT":[27.5,90.5],"BV":[-54.4,3.4],"BW":[-22,24],"CF":[7,21],"CA":[60,-95],"CC":[-12.5,96.8],"CH":[47,8],"CL":[-30,-71],"CN":[35,105],"CI":[8,-5],"CM":[6,12],"CD":[0,25],"CG":[-1,15],"CK":[-21.2,-159.8],"CO":[4,-72],"KM":[-12.2,44.2],"CV":[16,-24],"CR":[10,-84],"CU":[21.5,-80],"CW":[12.1,-68.9],"CX":[-10.5,105.7],"KY":[19.5,-80.5],"CY":[35,33],"CZ":[49.8,15.5],"DE":[51,9],"DJ":[11.5,43],"DM":[15.4,-61.3],"DK":[56,10],"DO":[19,-70.7],"DZ":[28,3],"EC":[-2,-77.5],"EG":[27,30],"ER":[15,39],"EH":[24.5,-13],"ES":[40,-4],"EE":[59,26],"ET":[8,38],"FI":[64,26],"FJ":[-18,175],"FK":[-51.8,-59],"FR":[46,2],"FO":[62,-7],"FM":[6.9,158.2],"GA":[-1,11.8],"GB":[54,-2],"GE":[42,43.5],"GG":[49.5,-2.6],"GH":[8,-2],"GI":[36.1,-5.3],"GN":[11,-10],"GP":[16.2,-61.6],"GM":[13.5,-16.6],"GW":[12,-15],"GQ":[2,10],"GR":[39,22],"GD":[12.1,-61.7],"GL":[72,-40],"GT":[15.5,-90.2],"GF":[4,-53],"GU":[13.5,144.8],"GY":[5,-59],"HK":[22.3,114.2],"HM":[-53.1,72.5],"HN":[15,-86.5],"HR":[45.2,15.5],"HT":[19,-72.4],"HU":[47,20],"ID":[-5,120],"IM":[54.2,-4.5],"IN":[20,77],"IO":[-6,71.5],"IE":[53,-8],"IR":[32,53],"IQ":[33,44],"IS":[65,-18],"IL":[31.5,35.1],"IT":[42.8,12.8],"JM":[18.2,-77.5],"JE":[49.2,-2.2],"JO":[31,36],"JP":[36,138],"KZ":[48,68],"KE":[1,38],"KG":[41,75],"KH":[13,105],"KI":[1.4,173],"KN":[17.3,-62.8],"KR":[37,127.5],"XK":[42.7,21.2],"KW":[29.5,45.8],"LA":[18,105],"LB":[33.8,35.8],"LR":[6.5,-9.5],"LY":[25,17],"LC":[13.9,-61.0],"LI":[47.3,9.5],"LK":[7,81],"LS":[-29.5,28.5],"LT":[56,24],"LU":[49.8,6.2],"LV":[57,25],"MO":[22.2,113.5],"MF":[18.1,-64.0],"MA":[32,-5],"MC":[43.7,7.4],"MD":[47,29],"MG":[-20,47],"MV":[3.2,73],"MX":[23,-102],"MH":[9,168],"MK":[41.8,22],"ML":[17,-4],"MT":[35.8,14.6],"MM":[22,98],"ME":[42.5,19.3],"MN":[46,105],"MP":[15.2,145.8],"MZ":[-18.2,35],"MR":[20,-12],"MS":[16.8,-62.2],"MQ":[14.7,-61],"MU":[-20.3,57.5],"MW":[-13.5,34],"MY":[2.5,112.5],"YT":[-12.8,45.2],"NA":[-22,17],"NC":[-21.5,165.5],"NE":[16,8],"NF":[-29.0,167.9],"NG":[10,8],"NI":[13,-85],"NU":[-19.0,-169.9],"NL":[52.5,5.8],"NO":[62,10],"NP":[28,84],"NR":[-0.5,166.9],"NZ":[-41,174],"OM":[21,57],"PK":[30,70],"PA":[9,-80],"PN":[-25.1,-130.1],"PE":[-10,-76],"PH":[13,122],"PW":[7.5,134.5],"PG":[-6,147],"PL":[52,20],"PR":[18.2,-66.5],"KP":[40,127],"PT":[39.5,-8],"PY":[-23,-58],"PS":[31.9,35.2],"PF":[-15,-140],"QA":[25.5,51.2],"RE":[-21.1,55.5],"RO":[46,25],"RU":[60,100],"RW":[-2,30],"SA":[25,45],"SD":[15,30],"SN":[14,-14],"SG":[1.4,103.8],"GS":[-54.5,-37],"SJ":[78,20],"SB":[-8,159],"SL":[8.5,-11.5],"SV":[13.8,-88.9],"SM":[43.8,12.4],"SO":[10,49],"PM":[46.8,-56.3],"RS":[44,21],"SS":[7,30],"ST":[1,7],"SR":[4,-56],"SK":[48.7,19.5],"SI":[46.1,14.8],"SE":[62,15],"SZ":[-26.5,31.5],"SX":[18.0,-63.0],"SC":[-4.6,55.7],"SY":[35,38],"TC":[21.8,-71.6],"TD":[15,19],"TG":[8,1.2],"TH":[15,100],"TJ":[39,71],"TK":[-9,-172],"TM":[40,60],"TL":[-8.8,125.9],"TO":[-20,-175],"TT":[11,-61],"TN":[34,9],"TR":[39,35],"TV":[-8,178],"TW":[23.5,121],"TZ":[-6,35],"UG":[1,32],"UA":[49,32],"UM":[19.3,166.6],"UY":[-33,-56],"US":[38,-97],"UZ":[41,64],"VA":[41.9,12.4],"VC":[13.2,-61.2],"VE":[8,-66],"VG":[18.4,-64.6],"VI":[18.4,-64.9],"VN":[16.2,107.8],"VU":[-16,167],"WF":[-13.3,-176.2],"WS":[-13.6,-172.3],"YE":[15,48],"ZA":[-29,24],"ZM":[-15,30],"ZW":[-20,30]};
+var satellite=(()=>{var ko=Object.defineProperty;var r0=Object.getOwnPropertyDescriptor;var p0=Object.getOwnPropertyNames;var a0=Object.prototype.hasOwnProperty;var h0=(o,s)=>{for(var m in s)ko(o,m,{get:s[m],enumerable:!0})},x0=(o,s,m,r)=>{if(s&&typeof s=="object"||typeof s=="function")for(let c of p0(s))!a0.call(o,c)&&c!==m&&ko(o,c,{get:()=>s[c],enumerable:!(r=r0(s,c))||r.enumerable});return o};var f0=o=>x0(ko({},"__esModule",{value:!0}),o);var M0={};h0(M0,{degreesLat:()=>Ko,degreesLong:()=>Qo,eciToGeodetic:()=>t0,gstime:()=>fo,json2satrec:()=>Wo,propagate:()=>Io});var at=Math.PI,E=at*2,Kt=at/180,Zo=180/at,_o=1440,u0=398600.8,vt=6378.135,Bt=60/Math.sqrt(vt*vt*vt/u0),zo=vt*Bt/60,$o=1/Bt,Ht=.001082616,g0=-253881e-11,Bo=-165597e-11,Wt=g0/Ht,Xt=2/3,Mo=1440/(2*at);function So(o,s){let m=[31,o%4===0?29:28,31,30,31,30,31,31,30,31,30,31],r=Math.floor(s),c=1,h=0;for(;r>h+m[c-1]&&c<12;)h+=m[c-1],c+=1;let M=c,T=r-h,i=(s-r)*24,O=Math.floor(i);i=(i-O)*60;let p=Math.floor(i),a=(i-p)*60;return{mon:M,day:T,hr:O,minute:p,sec:a}}function Fo(o,s,m,r,c,h,M=0){return 367*o-Math.floor(7*(o+Math.floor((s+9)/12))*.25)+Math.floor(275*s/9)+m+17210135e-1+((M/6e4+h/60+c)/60+r)/24}function eo(o,s,m,r,c,h,M=0){if(o instanceof Date){let T=o;return Fo(T.getUTCFullYear(),T.getUTCMonth()+1,T.getUTCDate(),T.getUTCHours(),T.getUTCMinutes(),T.getUTCSeconds(),T.getUTCMilliseconds())}return Fo(o,s,m,r,c,h,M)}function yo(o,s){let{e3:m,ee2:r,peo:c,pgho:h,pho:M,pinco:T,plo:i,se2:O,se3:p,sgh2:a,sgh3:k,sgh4:y,sh2:Y,sh3:K,si2:U,si3:b,sl2:j,sl3:I,sl4:$,t:C,xgh2:n,xgh3:g,xgh4:v,xh2:R,xh3:Q,xi2:L,xi3:x,xl2:ot,xl3:W,xl4:ct,zmol:f,zmos:lt}=o,{init:P,opsmode:H}=s,{ep:rt,inclp:zt,nodep:z,argpp:tt,mp:B}=s,e,d,st,V,Mt,F,yt,et,nt,w,Z,it,A,N,D,q,u,G,X,S,J,ft=119459e-10,ht=.01675,pt=.00015835218,dt=.0549;J=lt+ft*C,P==="y"&&(J=lt),S=J+2*ht*Math.sin(J),u=Math.sin(S),w=.5*u*u-.25,Z=-.5*u*Math.cos(S);let Tt=O*w+p*Z,Ot=U*w+b*Z,bt=j*w+I*Z+$*u,t=a*w+k*Z+y*u,wt=Y*w+K*Z;J=f+pt*C,P==="y"&&(J=f),S=J+2*dt*Math.sin(J),u=Math.sin(S),w=.5*u*u-.25,Z=-.5*u*Math.cos(S);let Lt=r*w+m*Z,Pt=L*w+x*Z,Ft=ot*w+W*Z+ct*u,kt=n*w+g*Z+v*u,ut=R*w+Q*Z;return it=Tt+Lt,D=Ot+Pt,q=bt+Ft,A=t+kt,N=wt+ut,P==="n"&&(it-=c,D-=T,q-=i,A-=h,N-=M,zt+=D,rt+=it,V=Math.sin(zt),st=Math.cos(zt),zt>=.2?(N/=V,A-=st*N,tt+=A,z+=N,B+=q):(F=Math.sin(z),Mt=Math.cos(z),e=V*F,d=V*Mt,yt=N*Mt+D*st*F,et=-N*F+D*st*Mt,e+=yt,d+=et,z%=E,z<0&&H==="a"&&(z+=E),G=B+tt+st*z,nt=q+A-D*z*V,G+=nt,X=z,z=Math.atan2(e,d),z<0&&H==="a"&&(z+=E),Math.abs(X-z)>at&&(z<X?z+=E:z-=E),B+=q,tt=G-B-st*z)),{ep:rt,inclp:zt,nodep:z,argpp:tt,mp:B}}function Yo(o){let{epoch:s,ep:m,argpp:r,tc:c,inclp:h,nodep:M,np:T}=o,i,O,p,a,k,y,Y,K,U,b,j,I,$,C,n,g,v,R,Q,L,x,ot,W,ct,f,lt,P,H,rt,zt,z,tt,B,e,d,st,V,Mt,F,yt,et,nt,w,Z,it,A,N,D,q,u,G,X,S,J,ft,ht,pt,dt,Tt,Ot,bt,t,wt,Lt=.01675,Pt=.0549,Ft=29864797e-13,kt=47968065e-14,ut=.39785416,Jt=.91744867,Nt=.1945905,Ct=-.98088458,Vt=T,xt=m,qt=Math.sin(M),jt=Math.cos(M),Ut=Math.sin(r),At=Math.cos(r),Zt=Math.sin(h),Rt=Math.cos(h),l=xt*xt,_t=1-l,It=Math.sqrt(_t),Qt=0,_=0,no=0,mo=0,ro=0,Gt=s+18261.5+c/1440,St=(4.523602-.00092422029*Gt)%E,gt=Math.sin(St),$t=Math.cos(St),co=.91375164-.03568096*$t,io=Math.sqrt(1-co*co),Dt=.089683511*gt/io,Et=Math.sqrt(1-Dt*Dt),mt=5.8351514+.001944368*Gt,to=.39785416*gt/io,bo=Et*$t+.91744867*Dt*gt;to=Math.atan2(to,bo),to+=mt-St;let No=Math.cos(to),qo=Math.sin(to);L=Nt,x=Ct,ct=Jt,f=ut,ot=jt,W=qt,j=Ft;let To=1/Vt,po=0;for(;po<2;)po+=1,i=L*ot+x*ct*W,p=-x*ot+L*ct*W,Y=-L*W+x*ct*ot,K=x*f,U=x*W+L*ct*ot,b=L*f,O=Rt*Y+Zt*K,a=Rt*U+Zt*b,k=-Zt*Y+Rt*K,y=-Zt*U+Rt*b,I=i*At+O*Ut,$=p*At+a*Ut,C=-i*Ut+O*At,n=-p*Ut+a*At,g=k*Ut,v=y*Ut,R=k*At,Q=y*At,bt=12*I*I-3*C*C,t=24*I*$-6*C*n,wt=12*$*$-3*n*n,X=3*(i*i+O*O)+bt*l,S=6*(i*p+O*a)+t*l,J=3*(p*p+a*a)+wt*l,ft=-6*i*k+l*(-24*I*R-6*C*g),ht=-6*(i*y+p*k)+l*(-24*($*R+I*Q)+-6*(C*v+n*g)),pt=-6*p*y+l*(-24*$*Q-6*n*v),dt=6*O*k+l*(24*I*g-6*C*R),Tt=6*(a*k+O*y)+l*(24*($*g+I*v)-6*(n*R+C*Q)),Ot=6*a*y+l*(24*$*v-6*n*Q),X=X+X+_t*bt,S=S+S+_t*t,J=J+J+_t*wt,N=j*To,A=-.5*N/It,D=N*It,it=-15*xt*D,q=I*C+$*n,u=$*C+I*n,G=$*n-I*C,po===1&&(lt=it,P=A,H=N,rt=D,zt=q,z=u,tt=G,B=X,e=S,d=J,st=ft,V=ht,Mt=pt,F=dt,yt=Tt,et=Ot,nt=bt,w=t,Z=wt,L=No,x=qo,ct=co,f=io,ot=Et*jt+Dt*qt,W=qt*Et-jt*Dt,j=kt);let ao=(4.7199672+(.2299715*Gt-mt))%E,Oo=(6.2565837+.017201977*Gt)%E,wo=2*lt*z,oo=2*lt*tt,so=2*P*V,Co=2*P*(Mt-st),Ro=-2*H*e,Do=-2*H*(d-B),Eo=-2*H*(-21-9*l)*Lt,lo=2*rt*w,Lo=2*rt*(Z-nt),Po=-18*rt*Lt,ho=-2*P*yt,go=-2*P*(et-F),xo=2*it*u,Ao=2*it*G,vo=2*A*ht,o0=2*A*(pt-ft),s0=-2*N*S,e0=-2*N*(J-X),n0=-2*N*(-21-9*l)*Pt,c0=2*D*t,i0=2*D*(wt-bt),l0=-18*D*Pt,d0=-2*A*Tt,m0=-2*A*(Ot-dt);return{snodm:qt,cnodm:jt,sinim:Zt,cosim:Rt,sinomm:Ut,cosomm:At,day:Gt,e3:Ao,ee2:xo,em:xt,emsq:l,gam:mt,peo:Qt,pgho:mo,pho:ro,pinco:_,plo:no,rtemsq:It,se2:wo,se3:oo,sgh2:lo,sgh3:Lo,sgh4:Po,sh2:ho,sh3:go,si2:so,si3:Co,sl2:Ro,sl3:Do,sl4:Eo,s1:it,s2:A,s3:N,s4:D,s5:q,s6:u,s7:G,ss1:lt,ss2:P,ss3:H,ss4:rt,ss5:zt,ss6:z,ss7:tt,sz1:B,sz2:e,sz3:d,sz11:st,sz12:V,sz13:Mt,sz21:F,sz22:yt,sz23:et,sz31:nt,sz32:w,sz33:Z,xgh2:c0,xgh3:i0,xgh4:l0,xh2:d0,xh3:m0,xi2:vo,xi3:o0,xl2:s0,xl3:e0,xl4:n0,nm:Vt,z1:X,z2:S,z3:J,z11:ft,z12:ht,z13:pt,z21:dt,z22:Tt,z23:Ot,z31:bt,z32:t,z33:wt,zmol:ao,zmos:Oo}}function jo(o){let{cosim:s,argpo:m,s1:r,s2:c,s3:h,s4:M,s5:T,sinim:i,ss1:O,ss2:p,ss3:a,ss4:k,ss5:y,sz1:Y,sz3:K,sz11:U,sz13:b,sz21:j,sz23:I,sz31:$,sz33:C,t:n,tc:g,gsto:v,mo:R,mdot:Q,no:L,nodeo:x,nodedot:ot,xpidot:W,z1:ct,z3:f,z11:lt,z13:P,z21:H,z23:rt,z31:zt,z33:z,ecco:tt,eccsq:B}=o,{emsq:e,em:d,argpm:st,inclm:V,mm:Mt,nm:F,nodem:yt,irez:et,atime:nt,d2201:w,d2211:Z,d3210:it,d3222:A,d4410:N,d4422:D,d5220:q,d5232:u,d5421:G,d5433:X,dedt:S,didt:J,dmdt:ft,dnodt:ht,domdt:pt,del1:dt,del2:Tt,del3:Ot,xfact:bt,xlamo:t,xli:wt,xni:Lt}=o,Pt,Ft,kt,ut,Jt,Nt,Ct,Vt,xt,qt,jt,Ut,At,Zt,Rt,l,_t,It,Qt,_,no,mo,ro,Gt,St,gt,$t,co,io,Dt,Et,mt,to=17891679e-13,bo=21460748e-13,No=22123015e-14,qo=17891679e-13,To=73636953e-16,po=21765803e-16,ao=.0043752690880113,Oo=37393792e-14,wo=11428639e-14,oo=.00015835218,so=119459e-10;et=0,F<.0052359877&&F>.0034906585&&(et=1),F>=.00826&&F<=.00924&&d>=.5&&(et=2);let Co=O*so*y,Ro=p*so*(U+b),Do=-so*a*(Y+K-14-6*e),Eo=k*so*($+C-6),lo=-so*p*(j+I);(V<.052359877||V>at-.052359877)&&(lo=0),i!==0&&(lo/=i);let Lo=Eo-s*lo;S=Co+r*oo*T,J=Ro+c*oo*(lt+P),ft=Do-oo*h*(ct+f-14-6*e);let Po=M*oo*(zt+z-6),ho=-oo*c*(H+rt);(V<.052359877||V>at-.052359877)&&(ho=0),pt=Lo+Po,ht=lo,i!==0&&(pt-=s/i*ho,ht+=ho/i);let go=0,xo=(v+g*ao)%E;if(d+=S*n,V+=J*n,st+=pt*n,yt+=ht*n,Mt+=ft*n,et!==0){if(Dt=(F/Bt)**Xt,et===2){Et=s*s;let Ao=d;d=tt;let vo=e;e=B,mt=d*e,Zt=-.306-(d-.64)*.44,d<=.65?(Rt=3.616-13.247*d+16.29*e,_t=-19.302+117.39*d-228.419*e+156.591*mt,It=-18.9068+109.7927*d-214.6334*e+146.5816*mt,Qt=-41.122+242.694*d-471.094*e+313.953*mt,_=-146.407+841.88*d-1629.014*e+1083.435*mt,no=-532.114+3017.977*d-5740.032*e+3708.276*mt):(Rt=-72.099+331.819*d-508.738*e+266.724*mt,_t=-346.844+1582.851*d-2415.925*e+1246.113*mt,It=-342.585+1554.908*d-2366.899*e+1215.972*mt,Qt=-1052.797+4758.686*d-7193.992*e+3651.957*mt,_=-3581.69+16178.11*d-24462.77*e+12422.52*mt,d>.715?no=-5149.66+29936.92*d-54087.36*e+31324.56*mt:no=1464.74-4664.75*d+3763.64*e),d<.7?(Gt=-919.2277+4988.61*d-9064.77*e+5542.21*mt,mo=-822.71072+4568.6173*d-8491.4146*e+5337.524*mt,ro=-853.666+4690.25*d-8624.77*e+5341.4*mt):(Gt=-37995.78+161616.52*d-229838.2*e+109377.94*mt,mo=-51752.104+218913.95*d-309468.16*e+146349.42*mt,ro=-40023.88+170470.89*d-242699.48*e+115605.82*mt),St=i*i,Pt=.75*(1+2*s+Et),Ft=1.5*St,ut=1.875*i*(1-2*s-3*Et),Jt=-1.875*i*(1+2*s-3*Et),Ct=35*St*Pt,Vt=39.375*St*St,xt=9.84375*i*(St*(1-2*s-5*Et)+.33333333*(-2+4*s+6*Et)),qt=i*(4.92187512*St*(-2-4*s+10*Et)+6.56250012*(1+2*s-3*Et)),jt=29.53125*i*(2-8*s+Et*(-12+8*s+10*Et)),Ut=29.53125*i*(-2-8*s+Et*(12+8*s-10*Et)),co=F*F,io=Dt*Dt,$t=3*co*io,gt=$t*qo,w=gt*Pt*Zt,Z=gt*Ft*Rt,$t*=Dt,gt=$t*Oo,it=gt*ut*_t,A=gt*Jt*It,$t*=Dt,gt=2*$t*To,N=gt*Ct*Qt,D=gt*Vt*_,$t*=Dt,gt=$t*wo,q=gt*xt*no,u=gt*qt*ro,gt=2*$t*po,G=gt*jt*mo,X=gt*Ut*Gt,t=(R+x+x-(xo+xo))%E,bt=Q+ft+2*(ot+ht-ao)-L,d=Ao,e=vo}et===1&&(At=1+e*(-2.5+.8125*e),_t=1+2*e,l=1+e*(-6+6.60937*e),Pt=.75*(1+s)*(1+s),kt=.9375*i*i*(1+3*s)-.75*(1+s),Nt=1+s,Nt=1.875*Nt*Nt*Nt,dt=3*F*F*Dt*Dt,Tt=2*dt*Pt*At*to,Ot=3*dt*Nt*l*No*Dt,dt=dt*kt*_t*bo*Dt,t=(R+x+m-xo)%E,bt=Q+W+ft+pt+ht-(L+ao)),wt=t,Lt=L,nt=0,F=L+go}return{em:d,argpm:st,inclm:V,mm:Mt,nm:F,nodem:yt,irez:et,atime:nt,d2201:w,d2211:Z,d3210:it,d3222:A,d4410:N,d4422:D,d5220:q,d5232:u,d5421:G,d5433:X,dedt:S,didt:J,dmdt:ft,dndt:go,dnodt:ht,domdt:pt,del1:dt,del2:Tt,del3:Ot,xfact:bt,xlamo:t,xli:wt,xni:Lt}}function Uo(o){let s=(o-2451545)/36525,m=-62e-7*s*s*s+.093104*s*s+(876600*3600+8640184812866e-6)*s+67310.54841;return m=m*Kt/240%E,m<0&&(m+=E),m}function fo(o,s,m,r,c,h,M){return o instanceof Date?Uo(eo(o)):Uo(s!==void 0?eo(o,s,m,r,c,h,M):o)}function Ho(o){let{ecco:s,epoch:m,inclo:r,opsmode:c}=o,{no:h}=o,M=s*s,T=1-M,i=Math.sqrt(T),O=Math.cos(r),p=O*O,a=(Bt/h)**Xt,k=.75*Ht*(3*p-1)/(i*T),y=k/(a*a),Y=a*(1-y*y-y*(1/3+134*y*y/81));y=k/(Y*Y),h/=1+y;let K=(Bt/h)**Xt,U=Math.sin(r),b=K*T,j=1-5*p,I=-j-p-p,$=1/K,C=b*b,n=K*(1-s),g="n",v;if(c==="a"){let R=m-7305,Q=Math.floor(R+1e-8),L=R-Q,x=.017202791694070362,ot=1.7321343856509375,W=5075514194322695e-30,ct=x+E;v=(ot+x*Q+ct*L+R*R*W)%E,v<0&&(v+=E)}else v=fo(m+24332815e-1);return{no:h,method:g,ainv:$,ao:K,con41:I,con42:j,cosio:O,cosio2:p,eccsq:M,omeosq:T,posq:C,rp:n,rteosq:i,sinio:U,gsto:v}}function Vo(o){let{irez:s,d2201:m,d2211:r,d3210:c,d3222:h,d4410:M,d4422:T,d5220:i,d5232:O,d5421:p,d5433:a,dedt:k,del1:y,del2:Y,del3:K,didt:U,dmdt:b,dnodt:j,domdt:I,argpo:$,argpdot:C,t:n,tc:g,gsto:v,xfact:R,xlamo:Q,no:L}=o,{atime:x,em:ot,argpm:W,inclm:ct,xli:f,mm:lt,xni:P,nodem:H,nm:rt}=o,zt=.13130908,z=2.8843198,tt=.37448087,B=5.7686396,e=.95240898,d=1.8014998,st=1.050833,V=4.4108898,Mt=.0043752690880113,F=720,yt=-720,et=259200,nt,w,Z,it,A,N,D,q,u=0,G=0,X=(v+g*Mt)%E;if(ot+=k*n,ct+=U*n,W+=I*n,H+=j*n,lt+=b*n,s!==0){(x===0||n*x<=0||Math.abs(n)<Math.abs(x))&&(x=0,P=L,f=Q),n>0?nt=F:nt=yt;let S=381;for(;S===381;)s!==2?(D=y*Math.sin(f-zt)+Y*Math.sin(2*(f-z))+K*Math.sin(3*(f-tt)),A=P+R,N=y*Math.cos(f-zt)+2*Y*Math.cos(2*(f-z))+3*K*Math.cos(3*(f-tt)),N*=A):(q=$+C*x,Z=q+q,w=f+f,D=m*Math.sin(Z+f-B)+r*Math.sin(f-B)+c*Math.sin(q+f-e)+h*Math.sin(-q+f-e)+M*Math.sin(Z+w-d)+T*Math.sin(w-d)+i*Math.sin(q+f-st)+O*Math.sin(-q+f-st)+p*Math.sin(q+w-V)+a*Math.sin(-q+w-V),A=P+R,N=m*Math.cos(Z+f-B)+r*Math.cos(f-B)+c*Math.cos(q+f-e)+h*Math.cos(-q+f-e)+i*Math.cos(q+f-st)+O*Math.cos(-q+f-st)+2*(M*Math.cos(Z+w-d)+T*Math.cos(w-d)+p*Math.cos(q+w-V)+a*Math.cos(-q+w-V)),N*=A),Math.abs(n-x)>=F?S=381:(G=n-x,S=0),S===381&&(f+=A*nt+D*et,P+=D*nt+N*et,x+=nt);rt=P+D*G+N*G*G*.5,it=f+A*G+D*G*G*.5,s!==1?(lt=it-2*H+2*X,u=rt-L):(lt=it-H-W+X,u=rt-L),rt=L+u}return{atime:x,em:ot,argpm:W,inclm:ct,xli:f,mm:lt,xni:P,nodem:H,dndt:u,nm:rt}}var Yt;(function(o){o[o.None=0]="None",o[o.MeanEccentricityOutOfRange=1]="MeanEccentricityOutOfRange",o[o.MeanMotionBelowZero=2]="MeanMotionBelowZero",o[o.PerturbedEccentricityOutOfRange=3]="PerturbedEccentricityOutOfRange",o[o.SemiLatusRectumBelowZero=4]="SemiLatusRectumBelowZero",o[o.Decayed=6]="Decayed"})(Yt||(Yt={}));function uo(o,s){let m,r,c,h,M,T,i,O,p,a,k,y,Y,K,U,b,j,I,$,C,n,g,v,R,Q,L,x;o.t=s,o.error=Yt.None;let W=o.mo+o.mdot*o.t,ct=o.argpo+o.argpdot*o.t,f=o.nodeo+o.nodedot*o.t;p=ct,n=W;let lt=o.t*o.t;if(v=f+o.nodecf*lt,j=1-o.cc1*o.t,I=o.bstar*o.cc4*o.t,$=o.t2cof*lt,o.isimp!==1){i=o.omgcof*o.t;let xt=1+o.eta*Math.cos(W);T=o.xmcof*(xt*xt*xt-o.delmo),b=i+T,n=W+b,p=ct-b,y=lt*o.t,Y=y*o.t,j=j-o.d2*lt-o.d3*y-o.d4*Y,I+=o.bstar*o.cc5*(Math.sin(n)-o.sinmao),$=$+o.t3cof*y+Y*(o.t4cof+o.t*o.t5cof)}o.tempa=j,g=o.no;let P=o.ecco;if(C=o.inclo,o.method==="d"){K=o.t;let xt={irez:o.irez,d2201:o.d2201,d2211:o.d2211,d3210:o.d3210,d3222:o.d3222,d4410:o.d4410,d4422:o.d4422,d5220:o.d5220,d5232:o.d5232,d5421:o.d5421,d5433:o.d5433,dedt:o.dedt,del1:o.del1,del2:o.del2,del3:o.del3,didt:o.didt,dmdt:o.dmdt,dnodt:o.dnodt,domdt:o.domdt,argpo:o.argpo,argpdot:o.argpdot,t:o.t,tc:K,gsto:o.gsto,xfact:o.xfact,xlamo:o.xlamo,no:o.no,atime:o.atime,em:P,argpm:p,inclm:C,xli:o.xli,mm:n,xni:o.xni,nodem:v,nm:g},qt=Vo(xt);({em:P,argpm:p,inclm:C,mm:n,nodem:v,nm:g}=qt),o.atime=qt.atime,o.xli=qt.xli,o.xni=qt.xni}if(g<=0)return o.error=Yt.MeanMotionBelowZero,null;let H=(Bt/g)**Xt*j*j;if(g=Bt/H**1.5,P-=I,P>=1||P<-.001)return o.error=Yt.MeanEccentricityOutOfRange,null;P<1e-6&&(P=1e-6),n+=o.no*$,Q=n+p+v,v%=E,p%=E,Q%=E,n=(Q-p-v)%E;let rt={am:H,em:P,im:C,Om:v,om:p,mm:n,nm:g},zt=Math.sin(C),z=Math.cos(C),tt=P;if(R=C,a=p,x=v,L=n,h=zt,c=z,o.method==="d"){let xt={inclo:o.inclo,init:"n",ep:tt,inclp:R,nodep:x,argpp:a,mp:L,opsmode:o.operationmode},qt=yo(o,xt);if({ep:tt,nodep:x,argpp:a,mp:L}=qt,R=qt.inclp,R<0&&(R=-R,x+=at,a-=at),tt<0||tt>1)return o.error=Yt.PerturbedEccentricityOutOfRange,null}o.method==="d"&&(h=Math.sin(R),c=Math.cos(R),o.aycof=-.5*Wt*h,Math.abs(c+1)>15e-13?o.xlcof=-.25*Wt*h*(3+5*c)/(1+c):o.xlcof=-.25*Wt*h*(3+5*c)/15e-13);let B=tt*Math.cos(a);b=1/(H*(1-tt*tt));let e=tt*Math.sin(a)+b*o.aycof,st=(L+a+x+b*o.xlcof*B-x)%E;O=st,U=9999.9;let V=1;for(;Math.abs(U)>=1e-12&&V<=10;)r=Math.sin(O),m=Math.cos(O),U=1-m*B-r*e,U=(st-e*m+B*r-O)/U,Math.abs(U)>=.95&&(U>0?U=.95:U=-.95),O+=U,V+=1;let Mt=B*m+e*r,F=B*r-e*m,yt=B*B+e*e,et=H*(1-yt);if(et<0)return o.error=Yt.SemiLatusRectumBelowZero,null;let nt=H*(1-Mt),w=Math.sqrt(H)*F/nt,Z=Math.sqrt(et)/nt,it=Math.sqrt(1-yt);b=F/(1+it);let A=H/nt*(r-e-B*b),N=H/nt*(m-B+e*b);k=Math.atan2(A,N);let D=(N+N)*A,q=1-2*A*A;b=1/et;let u=.5*Ht*b,G=u*b;o.method==="d"&&(M=c*c,o.con41=3*M-1,o.x1mth2=1-M,o.x7thm1=7*M-1);let X=nt*(1-1.5*G*it*o.con41)+.5*u*o.x1mth2*q;if(X<1)return o.error=Yt.Decayed,null;k-=.25*G*o.x7thm1*D;let S=x+1.5*G*c*D,J=R+1.5*G*c*h*q,ft=w-g*u*o.x1mth2*D/Bt,ht=Z+g*u*(o.x1mth2*q+1.5*o.con41)/Bt,pt=Math.sin(k),dt=Math.cos(k),Tt=Math.sin(S),Ot=Math.cos(S),bt=Math.sin(J),t=Math.cos(J),wt=-Tt*t,Lt=Ot*t,Pt=wt*pt+Ot*dt,Ft=Lt*pt+Tt*dt,kt=bt*pt,ut=wt*dt-Ot*pt,Jt=Lt*dt-Tt*pt,Nt=bt*dt,Ct={x:X*Pt*vt,y:X*Ft*vt,z:X*kt*vt},Vt={x:(ft*Pt+ht*ut)*zo,y:(ft*Ft+ht*Jt)*zo,z:(ft*kt+ht*Nt)*zo};return{position:Ct,velocity:Vt,meanElements:rt}}function Go(o,s){let{opsmode:m,satn:r,epoch:c,xbstar:h,xecco:M,xargpo:T,xinclo:i,xmo:O,xno:p,xnodeo:a}=s,k,y,Y,K,U,b,j,I,$,C,n,g,v,R,Q,L,x,ot,W,ct,f,lt,P,H,rt,zt,z,tt,B,e,d,st,V,Mt,F,yt,et,nt,w,Z,it,A,N,D,q,u,G,X,S,J,ft,ht,pt,dt,Tt,Ot,bt=15e-13,t=o;t.isimp=0,t.method="n",t.aycof=0,t.con41=0,t.cc1=0,t.cc4=0,t.cc5=0,t.d2=0,t.d3=0,t.d4=0,t.delmo=0,t.eta=0,t.argpdot=0,t.omgcof=0,t.sinmao=0,t.t=0,t.t2cof=0,t.t3cof=0,t.t4cof=0,t.t5cof=0,t.x1mth2=0,t.x7thm1=0,t.mdot=0,t.nodedot=0,t.xlcof=0,t.xmcof=0,t.nodecf=0,t.irez=0,t.d2201=0,t.d2211=0,t.d3210=0,t.d3222=0,t.d4410=0,t.d4422=0,t.d5220=0,t.d5232=0,t.d5421=0,t.d5433=0,t.dedt=0,t.del1=0,t.del2=0,t.del3=0,t.didt=0,t.dmdt=0,t.dnodt=0,t.domdt=0,t.e3=0,t.ee2=0,t.peo=0,t.pgho=0,t.pho=0,t.pinco=0,t.plo=0,t.se2=0,t.se3=0,t.sgh2=0,t.sgh3=0,t.sgh4=0,t.sh2=0,t.sh3=0,t.si2=0,t.si3=0,t.sl2=0,t.sl3=0,t.sl4=0,t.gsto=0,t.xfact=0,t.xgh2=0,t.xgh3=0,t.xgh4=0,t.xh2=0,t.xh3=0,t.xi2=0,t.xi3=0,t.xl2=0,t.xl3=0,t.xl4=0,t.xlamo=0,t.zmol=0,t.zmos=0,t.atime=0,t.xli=0,t.xni=0,t.bstar=h,t.ecco=M,t.argpo=T,t.inclo=i,t.mo=O,t.no=p,t.nokozai=p,t.nodeo=a,t.operationmode=m;let wt=78/vt+1,Lt=42/vt,Pt=Lt*Lt*Lt*Lt;t.init="y",t.t=0;let Ft={satn:r,ecco:t.ecco,epoch:c,inclo:t.inclo,no:t.no,method:t.method,opsmode:t.operationmode},kt=Ho(Ft),{ao:ut,con42:Jt,cosio:Nt,cosio2:Ct,eccsq:Vt,omeosq:xt,posq:qt,rp:jt,rteosq:Ut,sinio:At}=kt;if(t.no=kt.no,t.con41=kt.con41,t.gsto=kt.gsto,t.a=(t.no*$o)**(-2/3),t.alta=t.a*(1+t.ecco)-1,t.altp=t.a*(1-t.ecco)-1,t.error=0,xt>=0||t.no>=0){if(t.isimp=0,jt<220/vt+1&&(t.isimp=1),z=wt,f=Pt,ot=(jt-1)*vt,ot<156){z=ot-78,ot<98&&(z=20);let Rt=(120-z)/vt;f=Rt*Rt*Rt*Rt,z=z/vt+1}W=1/qt,u=1/(ut-z),t.eta=ut*t.ecco*u,g=t.eta*t.eta,n=t.ecco*t.eta,ct=Math.abs(1-g),b=f*u**4,j=b/ct**3.5,K=j*t.no*(ut*(1+1.5*g+n*(4+g))+.375*Ht*u/ct*t.con41*(8+3*g*(8+g))),t.cc1=t.bstar*K,U=0,t.ecco>1e-4&&(U=-2*b*u*Wt*t.no*At/t.ecco),t.x1mth2=1-Ct,t.cc4=2*t.no*j*ut*xt*(t.eta*(2+.5*g)+t.ecco*(.5+2*g)-Ht*u/(ut*ct)*(-3*t.con41*(1-2*n+g*(1.5-.5*n))+.75*t.x1mth2*(2*g-n*(1+g))*Math.cos(2*t.argpo))),t.cc5=2*j*ut*xt*(1+2.75*(g+n)+n*g),I=Ct*Ct,N=1.5*Ht*W*t.no,D=.5*N*Ht*W,q=-.46875*Bo*W*W*t.no,t.mdot=t.no+.5*N*Ut*t.con41+.0625*D*Ut*(13-78*Ct+137*I),t.argpdot=-.5*N*Jt+.0625*D*(7-114*Ct+395*I)+q*(3-36*Ct+49*I),X=-N*Nt,t.nodedot=X+(.5*D*(4-19*Ct)+2*q*(3-7*Ct))*Nt,G=t.argpdot+t.nodedot,t.omgcof=t.bstar*U*Math.cos(t.argpo),t.xmcof=0,t.ecco>1e-4&&(t.xmcof=-Xt*b*t.bstar/n),t.nodecf=3.5*xt*X*t.cc1,t.t2cof=1.5*t.cc1,Math.abs(Nt+1)>15e-13?t.xlcof=-.25*Wt*At*(3+5*Nt)/(1+Nt):t.xlcof=-.25*Wt*At*(3+5*Nt)/bt,t.aycof=-.5*Wt*At;let Zt=1+t.eta*Math.cos(t.mo);if(t.delmo=Zt*Zt*Zt,t.sinmao=Math.sin(t.mo),t.x7thm1=7*Ct-1,2*at/t.no>=225){t.method="d",t.isimp=1,it=0,Q=t.inclo;let Rt={epoch:c,ep:t.ecco,argpp:t.argpo,tc:it,inclp:t.inclo,nodep:t.nodeo,np:t.no,e3:t.e3,ee2:t.ee2,peo:t.peo,pgho:t.pgho,pho:t.pho,pinco:t.pinco,plo:t.plo,se2:t.se2,se3:t.se3,sgh2:t.sgh2,sgh3:t.sgh3,sgh4:t.sgh4,sh2:t.sh2,sh3:t.sh3,si2:t.si2,si3:t.si3,sl2:t.sl2,sl3:t.sl3,sl4:t.sl4,xgh2:t.xgh2,xgh3:t.xgh3,xgh4:t.xgh4,xh2:t.xh2,xh3:t.xh3,xi2:t.xi2,xi3:t.xi3,xl2:t.xl2,xl3:t.xl3,xl4:t.xl4,zmol:t.zmol,zmos:t.zmos},l=Yo(Rt);t.e3=l.e3,t.ee2=l.ee2,t.peo=l.peo,t.pgho=l.pgho,t.pho=l.pho,t.pinco=l.pinco,t.plo=l.plo,t.se2=l.se2,t.se3=l.se3,t.sgh2=l.sgh2,t.sgh3=l.sgh3,t.sgh4=l.sgh4,t.sh2=l.sh2,t.sh3=l.sh3,t.si2=l.si2,t.si3=l.si3,t.sl2=l.sl2,t.sl3=l.sl3,t.sl4=l.sl4,{sinim:y,cosim:k,em:$,emsq:C,s1:lt,s2:P,s3:H,s4:rt,s5:zt,ss1:tt,ss2:B,ss3:e,ss4:d,ss5:st,sz1:V,sz3:Mt,sz11:F,sz13:yt,sz21:et,sz23:nt,sz31:w,sz33:Z}=l,t.xgh2=l.xgh2,t.xgh3=l.xgh3,t.xgh4=l.xgh4,t.xh2=l.xh2,t.xh3=l.xh3,t.xi2=l.xi2,t.xi3=l.xi3,t.xl2=l.xl2,t.xl3=l.xl3,t.xl4=l.xl4,t.zmol=l.zmol,t.zmos=l.zmos,{nm:x,z1:S,z3:J,z11:ft,z13:ht,z21:pt,z23:dt,z31:Tt,z33:Ot}=l;let _t={inclo:Q,init:t.init,ep:t.ecco,inclp:t.inclo,nodep:t.nodeo,argpp:t.argpo,mp:t.mo,opsmode:t.operationmode},It=yo(t,_t);t.ecco=It.ep,t.inclo=It.inclp,t.nodeo=It.nodep,t.argpo=It.argpp,t.mo=It.mp,v=0,R=0,L=0;let Qt={cosim:k,emsq:C,argpo:t.argpo,s1:lt,s2:P,s3:H,s4:rt,s5:zt,sinim:y,ss1:tt,ss2:B,ss3:e,ss4:d,ss5:st,sz1:V,sz3:Mt,sz11:F,sz13:yt,sz21:et,sz23:nt,sz31:w,sz33:Z,t:t.t,tc:it,gsto:t.gsto,mo:t.mo,mdot:t.mdot,no:t.no,nodeo:t.nodeo,nodedot:t.nodedot,xpidot:G,z1:S,z3:J,z11:ft,z13:ht,z21:pt,z23:dt,z31:Tt,z33:Ot,ecco:t.ecco,eccsq:Vt,em:$,argpm:v,inclm:Q,mm:L,nm:x,nodem:R,irez:t.irez,atime:t.atime,d2201:t.d2201,d2211:t.d2211,d3210:t.d3210,d3222:t.d3222,d4410:t.d4410,d4422:t.d4422,d5220:t.d5220,d5232:t.d5232,d5421:t.d5421,d5433:t.d5433,dedt:t.dedt,didt:t.didt,dmdt:t.dmdt,dnodt:t.dnodt,domdt:t.domdt,del1:t.del1,del2:t.del2,del3:t.del3,xfact:t.xfact,xlamo:t.xlamo,xli:t.xli,xni:t.xni},_=jo(Qt);t.irez=_.irez,t.atime=_.atime,t.d2201=_.d2201,t.d2211=_.d2211,t.d3210=_.d3210,t.d3222=_.d3222,t.d4410=_.d4410,t.d4422=_.d4422,t.d5220=_.d5220,t.d5232=_.d5232,t.d5421=_.d5421,t.d5433=_.d5433,t.dedt=_.dedt,t.didt=_.didt,t.dmdt=_.dmdt,t.dnodt=_.dnodt,t.domdt=_.domdt,t.del1=_.del1,t.del2=_.del2,t.del3=_.del3,t.xfact=_.xfact,t.xlamo=_.xlamo,t.xli=_.xli,t.xni=_.xni}t.isimp!==1&&(Y=t.cc1*t.cc1,t.d2=4*ut*u*Y,A=t.d2*u*t.cc1/3,t.d3=(17*ut+z)*A,t.d4=.5*A*ut*u*(221*ut+31*z)*t.cc1,t.t3cof=t.d2+2*Y,t.t4cof=.25*(3*t.d3+t.cc1*(12*t.d2+10*Y)),t.t5cof=.2*(3*t.d4+12*t.cc1*t.d3+6*t.d2*t.d2+15*Y*(2*t.d2+Y)))}uo(t,0),t.init="n"}function z0(o,s){Go(o,{opsmode:s,satn:o.satnum,epoch:o.jdsatepoch-24332815e-1,xbstar:o.bstar,xecco:o.ecco,xargpo:o.argpo,xinclo:o.inclo,xmo:o.mo,xno:o.no,xnodeo:o.nodeo})}function Wo(o,s="i"){var x,ot;let r=o.NORAD_CAT_ID.toString(),c=o.EPOCH.endsWith("Z")?o.EPOCH:`${o.EPOCH}Z`,h=new Date(c),M=(ot=(x=/\.(\d+)Z$/.exec(c))==null?void 0:x[1])!=null?ot:"",T=M.length>3?+`0.${M.slice(3)}`/1e3:0,i=h.getUTCFullYear(),O=Number(i.toString().slice(-2)),p=(h.valueOf()-new Date(Date.UTC(i,0,1,0,0,0)).valueOf())/(86400*1e3)+T/86400+1,a=Number(o.MEAN_MOTION_DOT),k=Number(o.MEAN_MOTION_DDOT);a/=Mo*1440,k/=Mo*1440*1440;let y=Number(o.BSTAR),Y=Number(o.INCLINATION)*Kt,K=Number(o.RA_OF_ASC_NODE)*Kt,U=Number(o.ECCENTRICITY),b=Number(o.ARG_OF_PERICENTER)*Kt,j=Number(o.MEAN_ANOMALY)*Kt,I=Number(o.MEAN_MOTION)/Mo,$=So(i,p),{mon:C,day:n,hr:g,minute:v,sec:R}=$,Q=eo(i,C,n,g,v,R),L={error:0,satnum:r,epochyr:O,epochdays:p,ndot:a,nddot:k,bstar:y,inclo:Y,nodeo:K,ecco:U,argpo:b,mo:j,no:I,jdsatepoch:Q};return z0(L,s),L}var Xo=o=>o.tempa<=0;function Io(o,...s){let m=s.at(-1),r=typeof m=="object"&&!(m instanceof Date)?m:void 0,c=r?s.slice(0,-1):s,M=(eo(...c)-o.jdsatepoch)*_o,T=uo(o,M);return r!=null&&r.communityDecayCheckEnabled&&T&&Xo(o)?(o.error=Yt.Decayed,null):T}function Jo(o){return o*Zo}function Ko(o){if(o<-at/2||o>at/2)throw new RangeError("Latitude radians must be in range [-pi/2; pi/2].");return Jo(o)}function Qo(o){if(o<-at||o>at)throw new RangeError("Longitude radians must be in range [-pi; pi].");return Jo(o)}function t0(o,s){let r=6356.7523142,c=Math.sqrt(o.x*o.x+o.y*o.y),h=(6378.137-r)/6378.137,M=2*h-h*h,T=((Math.atan2(o.y,o.x)-s+at)%E+E)%E-at,i=20,O=1e-12,p=0,a=Math.atan2(o.z,c),k;do{k=a;let b=Math.sin(a),j=1/Math.sqrt(1-M*(b*b));a=Math.atan2(o.z+6378.137*j*M*b,c)}while(Math.abs(a-k)>O&&++p<i);let y=Math.sin(a),Y=Math.cos(a),K=1/Math.sqrt(1-M*(y*y)),U=c*Y+o.z*y-6378.137/K;return{longitude:T,latitude:a,height:U}}return f0(M0);})();
+
+var NOW = function () { return Date.now(); };
+
+/* ---------- layer and source definitions ---------- */
+var DEFS = [
+  ['sg_gdacs', 'GDACS Alerts', '#ff9f1c', 'REAL SIGNALS', '&#9888;', 'signal', 'people', 604800000],
+  ['sg_ioda', 'IODA Connectivity', '#b28dff', 'REAL SIGNALS', '&#128246;', 'signal', 'people', 3600000 * 6],
+  ['sg_wx', 'Weather Stations (NWS)', '#5bc0ff', 'REAL SIGNALS', '&#9729;', 'signal', 'machine', 3600000 * 6],
+  ['sg_sat', 'Satellites (TLE API, SGP4)', '#ffd93d', 'REAL SIGNALS', '&#128752;', 'signal', 'machine', 3 * 86400000],
+  ['sg_kiwi', 'KiwiSDR Receivers', '#7dff6a', 'REAL SIGNALS', '&#128251;', 'signal', 'machine', 3600000 * 6],
+  ['sg_safe', 'Safecast Radiation', '#fde047', 'REAL SIGNALS', '&#9762;', 'signal', 'machine', 86400000],
+  ['ref_hosp', 'OSM Hospitals', '#ff6b81', 'REFERENCE (not real time)', '&#127973;', 'reference', 'machine', 0],
+  ['ref_water', 'OSM Drinking Water', '#38bdf8', 'REFERENCE (not real time)', '&#128167;', 'reference', 'machine', 0],
+  ['ref_shelter', 'OSM Shelters', '#fb923c', 'REFERENCE (not real time)', '&#127960;', 'reference', 'machine', 0],
+  ['ref_power', 'OSM Power Plants', '#facc15', 'REFERENCE (not real time)', '&#9889;', 'reference', 'machine', 0],
+  ['ref_cable', 'Undersea Cables', '#ff7aa8', 'REFERENCE (not real time)', '&#12336;', 'reference', 'machine', 0],
+  ['ref_tech', 'Tech Power Nodes (sourced)', '#4ade80', 'REFERENCE (not real time)', '&#9670;', 'reference', 'machine', 0],
+  ['ref_ll2', 'Launch Sites + Upcoming (LL2)', '#ff8a3d', 'REFERENCE (not real time)', '&#128640;', 'reference', 'people', 0]
+];
+var SRC = {
+  sg_gdacs: ['GDACS', 900, 'www.gdacs.org'], sg_ioda: ['IODA', 600, 'api.ioda.inetintel.cc.gatech.edu'], sg_wx: ['NWS stations', 1200, 'api.weather.gov'],
+  sg_sat: ['TLE API element sets', 7200, 'tle.ivanstanojevic.me'], sg_celestrak: ['CelesTrak', 7200, 'celestrak.org'], sg_kiwi: ['KiwiSDR', 900, 'kiwisdr.com'], sg_safe: ['Safecast', 600, 'api.safecast.org'],
+  ref_osm: ['OSM Overpass', 86400, 'maps.mail.ru'], ref_cable: ['Cable Map', 0, 'submarinecablemap.com'], ref_tech: ['Official pages', 0, 'company sites'], ref_ll2: ['Launch Library 2', 1200, 'll.thespacedevs.com']
+};
+var DATA = {}, LDEF = {};
+function setup() {
+  var i, k;
+  for (i = 0; i < DEFS.length; i++) { var d = DEFS[i]; k = d[0]; DATA[k] = []; LDEF[k] = { key: k, label: d[1], kind: d[5], level: d[6], maxAge: d[7] };
+    LAYERS[k] = { label: d[1] + (d[5] === 'reference' ? ' (reference)' : ''), col: d[2], group: d[3], meshes: [], active: d[5] === 'signal' || k === 'ref_tech' || k === 'ref_ll2', icon: d[4] }; }
+  for (k in SRC) { if (SRC.hasOwnProperty(k)) SOURCES[k] = { label: SRC[k][0], interval: SRC[k][1] || 86400, lastFetch: 0, status: 'idle', retries: 0, host: SRC[k][2], err: '', checked: '', ref: k.indexOf('ref_') === 0 && k !== 'ref_ll2' }; }
+}
+function sset(k, st, err) { var s = SOURCES[k]; s.status = st; s.err = clean(err || '', 140); if (st === 'fresh') { s.lastFetch = NOW(); s.retries = 0; } if (st === 'err') s.retries = (s.retries || 0) + 1; if (st === 'down') s.checked = CHECKED; }
+function sdown(k, why) { sset(k, 'down', why); }
+function jget(url, cb, ms) {
+  var done = false, ac = typeof AbortController === 'function' ? new AbortController() : null, t = setTimeout(function () { if (ac) ac.abort(); if (!done) { done = true; cb('timeout'); } }, ms || 30000);
+  fetch(url, { credentials: 'omit', signal: ac ? ac.signal : undefined }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(function (j) { if (done) return; done = true; clearTimeout(t); cb(null, j); }).catch(function (e) { if (done) return; done = true; clearTimeout(t); cb(String(e && e.message || e).slice(0, 60)); });
+}
+function cget(k, maxS) { try { var j = JSON.parse(localStorage.getItem(k) || 'null'); if (j && typeof j.t === 'number' && NOW() - j.t < maxS * 1000 && j.d) return j; } catch (e) {} return null; }
+function cset(k, d) { try { localStorage.setItem(k, JSON.stringify({ t: NOW(), d: d })); } catch (e) {} }
+function bkGet(h) { try { var j = JSON.parse(localStorage.getItem('av-bk-' + h) || 'null'); if (j && j.until > NOW()) return j; } catch (e) {} return null; }
+function bkFail(h) { var n = 1; try { var j = JSON.parse(localStorage.getItem('av-bk-' + h) || 'null'); if (j && j.n) n = Math.min(j.n + 1, 6); } catch (e) {} var w = Math.min(7200, 300 * Math.pow(2, n - 1)) * 1000; try { localStorage.setItem('av-bk-' + h, JSON.stringify({ until: NOW() + w, n: n })); } catch (e2) {} return w; }
+function bkOk(h) { try { localStorage.removeItem('av-bk-' + h); } catch (e) {} }
+function mins(ms) { return Math.max(1, Math.round(ms / 60000)) + ' min'; }
+function p2(n) { return (n < 10 ? '0' : '') + n; }
+function utc(ms) { if (!ms) return 'unknown'; var d = new Date(ms); return d.getUTCFullYear() + '-' + p2(d.getUTCMonth() + 1) + '-' + p2(d.getUTCDate()) + ' ' + p2(d.getUTCHours()) + ':' + p2(d.getUTCMinutes()) + ':' + p2(d.getUTCSeconds()) + ' UTC'; }
+function ageS(ms) { if (!ms) return 'no time'; var s = Math.max(0, Math.round((NOW() - ms) / 1000)); if (s < 90) return s + ' s'; if (s < 5400) return Math.round(s / 60) + ' min'; if (s < 172800) return (s / 3600).toFixed(1) + ' h'; return (s / 86400).toFixed(1) + ' d'; }
+
+/* ---------- nodes ---------- */
+var GEO = {};
+function geo(kind, size) { var key = kind + size; if (!GEO[key]) GEO[key] = kind === 'box' ? new THREE.BoxGeometry(size * 1.5, size * 1.5, size * 1.5) : new THREE.SphereGeometry(size, 6, 5); return GEO[key]; }
+function clearLayer(k) {
+  LAYERS[k].meshes.forEach(function (m) { scene.remove(m); if (m.material && m.material.dispose) m.material.dispose(); });
+  var gone = {}; DATA[k].forEach(function (u) { gone[u.id] = 1; });
+  LAYERS[k].meshes = []; DATA[k] = [];
+  allMeshes = allMeshes.filter(function (m) { return !(m.userData && m.userData.layer === k); });
+}
+var SEQ = 0;
+function mk(layer, lat, lon, color, size, ud, ref) {
+  lat = num(lat, -90, 90, null); lon = num(lon, -180, 180, null); if (lat === null || lon === null) return null;
+  var m = new THREE.Mesh(geo(ref ? 'box' : 'sph', size), new THREE.MeshBasicMaterial({ color: color, transparent: true, opacity: 0.95 }));
+  m.position.copy(latLonToVec3(lat, lon, 1.02));
+  ud.sig = true; ud.id = ++SEQ; ud.type = layer; ud.layer = layer; ud.lat = lat; ud.lon = lon; ud.kind = LDEF[layer].kind;
+  ud.label = (ud.kind === 'reference' ? 'REFERENCE: ' : 'REAL SIGNAL: ') + LDEF[layer].label;
+  STATS.records++;
+  addNode(layer, m, ud); DATA[layer].push(ud); ud._m = m; return m;
+}
+function fields(a) { var o = [], i; for (i = 0; i < a.length; i++) o.push([clean(a[i][0], 40), clean(a[i][1], 120)]); return o; }
+
+/* ---------- GDACS ---------- */
+var GD_COL = { Red: 0xef4444, Orange: 0xfb923c, Green: 0x4ade80 };
+var GD_TYPE = { EQ: 'Earthquake', TC: 'Tropical cyclone', FL: 'Flood', VO: 'Volcano', DR: 'Drought', WF: 'Wildfire', TS: 'Tsunami' };
+function ingestGDACS(j) {
+  clearLayer('sg_gdacs'); var f = (j && j.features) || [], i, n = 0;
+  for (i = 0; i < f.length && n < 200; i++) {
+    var p = (f[i] && f[i].properties) || {}, g = (f[i] && f[i].geometry) || {}, c = g.coordinates;
+    if (g.type !== 'Point' || !c) continue;
+    var al = clean(p.alertlevel, 10), t = Date.parse(p.todate || p.fromdate) || Date.parse(p.fromdate) || 0, u = safeUrl(p.url && (p.url.report || p.url.details));
+    var sv = p.severitydata || {};
+    var m = mk('sg_gdacs', c[1], c[0], GD_COL[al] || 0xfbbf24, al === 'Red' ? 0.016 : 0.011, { name: clean(p.name || p.eventname, 90) || 'GDACS event', srcName: 'GDACS', srcHost: 'gdacs.org', srcT: t, link: u,
+      fields: fields([['Type', GD_TYPE[p.eventtype] || clean(p.eventtype, 12)], ['Alert level', al], ['Country', clean(p.country, 60)], ['Severity', clean(sv.severitytext, 80)], ['From', clean(p.fromdate, 30)], ['To', clean(p.todate, 30)]]) });
+    if (m) n++;
+  }
+  return n;
+}
+function loadGDACS() {
+  sset('sg_gdacs', 'loading');
+  jget('https://www.gdacs.org/gdacsapi/api/events/geteventlist/EVENTS4APP', function (e, j) { if (e) { sset('sg_gdacs', 'err', e); return; } ingestGDACS(j); sset('sg_gdacs', 'fresh'); refreshUI(); }, 40000);
+}
+
+/* ---------- IODA ---------- */
+function ingestIODA(j) {
+  clearLayer('sg_ioda'); var d = (j && j.data) || [], i, n = 0, now = NOW();
+  for (i = 0; i < d.length && n < 120; i++) {
+    var e = d[i] || {}, en = e.entity || {}, cc = clean(en.code, 3).toUpperCase(), ct = CENT[cc]; if (!ct) continue;
+    var sc = num((e.scores || {}).overall, 0, 1e15, 0), ev = num(e.event_cnt, 0, 1e6, 0);
+    var m = mk('sg_ioda', ct[0], ct[1], 0xb28dff, 0.012 + Math.min(0.012, Math.log(1 + sc) / 3000), { name: clean(en.name, 60) + ' (' + cc + ')', srcName: 'IODA, Georgia Tech', srcHost: 'api.ioda.inetintel.cc.gatech.edu', srcT: now, windowH: 24, cont: null,
+      ev: ev, fields: fields([['Country', clean(en.name, 60)], ['Outage events (24 h)', ev], ['Overall score', sc.toExponential(2)], ['Position', 'country centroid, not the outage site']]) });
+    if (m) n++;
+  }
+  return n;
+}
+function loadIODA() {
+  sset('sg_ioda', 'loading'); var now = Math.floor(NOW() / 1000);
+  jget('https://api.ioda.inetintel.cc.gatech.edu/v2/outages/summary?entityType=country&from=' + (now - 86400) + '&until=' + now + '&limit=60', function (e, j) { if (e) { sset('sg_ioda', 'err', e); return; } ingestIODA(j); sset('sg_ioda', 'fresh'); refreshUI(); }, 60000);
+}
+
+/* ---------- NWS weather stations: real observations with their own timestamps ---------- */
+var WX_STATES = ['CA', 'TX', 'NY', 'FL', 'WA', 'AK', 'HI', 'CO', 'IL', 'GA', 'AZ', 'MN'];
+function ingestObs(st, o) {
+  var p = (o && o.properties) || {}, g = (st && st.geometry) || {}, c = g.coordinates, t = Date.parse(p.timestamp) || 0; if (!c || !t) return null;
+  var tc = p.temperature && typeof p.temperature.value === 'number' ? p.temperature.value : null, ws = p.windSpeed && typeof p.windSpeed.value === 'number' ? p.windSpeed.value : null;
+  var sp = (st.properties || {});
+  return mk('sg_wx', c[1], c[0], 0x5bc0ff, 0.010, { name: clean(sp.name, 70) + ' (' + clean(sp.stationIdentifier, 8) + ')', srcName: 'NOAA National Weather Service', srcHost: 'api.weather.gov', srcT: t, temp: tc,
+    fields: fields([['Station', clean(sp.stationIdentifier, 8)], ['Conditions', clean(p.textDescription, 60)], ['Temperature', tc === null ? 'no value' : tc.toFixed(1) + ' C'], ['Wind', ws === null ? 'no value' : (ws * 1).toFixed(1) + ' km/h'], ['Observation time', utc(t)]]) });
+}
+function loadWX() {
+  sset('sg_wx', 'loading'); var list = [], pend = WX_STATES.length, i;
+  clearLayer('sg_wx');
+  function stage2() {
+    var q = list.slice(0, 40), idx = 0, active = 0, got = 0, fin = 0;
+    function pump() {
+      while (active < 4 && idx < q.length) { (function (st) { active++; var id = clean(st.properties && st.properties.stationIdentifier, 8).replace(/[^A-Z0-9]/gi, ''); idx++;
+        jget('https://api.weather.gov/stations/' + id + '/observations/latest', function (e, o) { active--; fin++; if (!e && ingestObs(st, o)) got++; if (fin >= q.length) { if (got) sset('sg_wx', 'fresh'); else sset('sg_wx', 'err', 'no observations'); refreshUI(); } else pump(); }, 20000); })(q[idx]); }
+      if (!q.length) sset('sg_wx', 'err', 'no stations');
+    }
+    pump();
+  }
+  for (i = 0; i < WX_STATES.length; i++) { (function (s) { jget('https://api.weather.gov/stations?state=' + s + '&limit=4', function (e, j) { if (!e && j && j.features) { var k; for (k = 0; k < j.features.length && k < 4; k++) list.push(j.features[k]); } pend--; if (!pend) stage2(); }, 20000); })(WX_STATES[i]); }
+}
+
+/* ---------- satellites: CelesTrak elements propagated with SGP4, positions of now ---------- */
+var SATG = ['ISS (ZARYA)', 'GOES', 'IRIDIUM', 'NAVSTAR', 'GALILEO', 'NOAA'], satrecs = [];
+function tleExp(t) { t = t.replace(/\s/g, ''); var m = /^([+-]?)(\d*)([+-]\d)$/.exec(t); if (!m) { var v = parseFloat(t); return isFinite(v) ? v : 0; } return (m[1] === '-' ? -1 : 1) * parseFloat('0.' + (m[2] || '0')) * Math.pow(10, parseInt(m[3], 10)); }
+function tle2omm(o) {
+  var a = o.line1, b = o.line2; if (a.charAt(0) !== '1' || b.charAt(0) !== '2' || a.length < 63 || b.length < 63) return null;
+  var yy = parseInt(a.substr(18, 2), 10), day = parseFloat(a.substr(20, 12)); if (!isFinite(yy) || !isFinite(day)) return null;
+  var yr = yy < 57 ? 2000 + yy : 1900 + yy, ms = Date.UTC(yr, 0, 1) + (day - 1) * 86400000;
+  var r = { OBJECT_NAME: String(o.name || ''), NORAD_CAT_ID: parseInt(a.substr(2, 5), 10), EPOCH: new Date(ms).toISOString().replace('Z', ''), MEAN_MOTION_DOT: parseFloat(a.substr(33, 10)), MEAN_MOTION_DDOT: tleExp(a.substr(44, 8)), BSTAR: tleExp(a.substr(53, 8)),
+    INCLINATION: parseFloat(b.substr(8, 8)), RA_OF_ASC_NODE: parseFloat(b.substr(17, 8)), ECCENTRICITY: parseFloat('0.' + b.substr(26, 7).trim()), ARG_OF_PERICENTER: parseFloat(b.substr(34, 8)), MEAN_ANOMALY: parseFloat(b.substr(43, 8)), MEAN_MOTION: parseFloat(b.substr(52, 11)),
+    CLASSIFICATION_TYPE: 'U', EPHEMERIS_TYPE: 0, ELEMENT_SET_NO: 999, REV_AT_EPOCH: 0 };
+  var k; for (k in r) if (typeof r[k] === 'number' && !isFinite(r[k])) return null;
+  return r;
+}
+function ingestTLE(list, group) {
+  var i, n = 0;
+  for (i = 0; i < list.length && satrecs.length < 240; i++) { var o = list[i] || {}; if (typeof o.line1 !== 'string' || typeof o.line2 !== 'string' || o.line1.length > 80 || o.line2.length > 80) continue;
+    try { var omm = tle2omm(o); var rec = omm ? satellite.json2satrec(omm) : null; if (rec && !rec.error) { satrecs.push({ rec: rec, name: clean(o.name, 40), id: clean(o.satelliteId, 10), epoch: Date.parse(o.date) || 0, group: group }); n++; } } catch (e) {} }
+  return n;
+}
+function placeSats() {
+  if (!satrecs.length) return;
+  var now = new Date(), gm = satellite.gstime(now), i;
+  if (!DATA.sg_sat.length) { for (i = 0; i < satrecs.length; i++) { mk('sg_sat', 0, 0, 0xffd93d, 0.007, { name: satrecs[i].name, srcName: 'TLE API element sets, SGP4 propagation here', srcHost: 'tle.ivanstanojevic.me', srcT: satrecs[i].epoch, sat: satrecs[i], fields: [] }); } }
+  for (i = 0; i < DATA.sg_sat.length; i++) {
+    var u = DATA.sg_sat[i], s = u.sat, pv; try { pv = satellite.propagate(s.rec, now); } catch (e) { continue; }
+    if (!pv || !pv.position || typeof pv.position.x !== 'number') continue;
+    var gd = satellite.eciToGeodetic(pv.position, gm), lat = satellite.degreesLat(gd.latitude), lon = satellite.degreesLong(gd.longitude); if (!isFinite(lat) || !isFinite(lon)) continue;
+    var v = pv.velocity, sp = v ? Math.sqrt(v.x * v.x + v.y * v.y + v.z * v.z) : 0;
+    u.lat = lat; u.lon = lon; u.alt = gd.height; u._m.position.copy(latLonToVec3(lat, lon, 1 + Math.min(0.15, gd.height / 6371 * 0.9) + 0.012));
+    u.fields = fields([['NORAD ID', s.id], ['Search group', s.group], ['Altitude', gd.height.toFixed(0) + ' km'], ['Speed', sp.toFixed(2) + ' km/s'], ['Position', lat.toFixed(2) + ', ' + lon.toFixed(2)], ['Element set epoch', utc(s.epoch)]]);
+  }
+}
+function loadSats() {
+  var S = SOURCES.sg_sat, gi = 0, got = 0, stale = 0, fails = 0, bk = bkGet('tleapi'), oldest = 0; S.status = 'loading'; satrecs = [];
+  function next() {
+    if (gi >= SATG.length) {
+      if (got) { clearLayer('sg_sat'); placeSats(); sset('sg_sat', stale ? 'err' : 'fresh', stale ? 'source not answering, showing cached element sets (age shown)' : ''); S.cached = !!stale; S.lastFetch = oldest || NOW(); }
+      else sdown('sg_sat', bk ? 'element source backing off ' + mins(bk.until - NOW()) + ', no cache yet' : 'element source did not answer and there is no cache yet');
+      refreshUI(); return;
+    }
+    var g = SATG[gi++], key = 'av-tle-' + g, c = cget(key, 7200);
+    if (c) { got += ingestTLE(c.d, g) ? 1 : 0; if (!oldest || c.t < oldest) oldest = c.t; setTimeout(next, 0); return; }
+    var old = cget(key, 7 * 86400);
+    if (bk || fails >= 4) { if (old) { got += ingestTLE(old.d, g) ? 1 : 0; stale++; if (!oldest || old.t < oldest) oldest = old.t; } setTimeout(next, 0); return; }
+    jget('https://tle.ivanstanojevic.me/api/tle/?search=' + encodeURIComponent(g) + '&page-size=40', function (e, d) {
+      var mem = d && d.member;
+      if (e || !mem || !mem.length) { fails++; if (fails >= 4) { bkFail('tleapi'); bk = bkGet('tleapi'); } if (old) { got += ingestTLE(old.d, g) ? 1 : 0; stale++; if (!oldest || old.t < oldest) oldest = old.t; } }
+      else { bkOk('tleapi'); cset(key, mem); got += ingestTLE(mem, g) ? 1 : 0; if (!oldest) oldest = NOW(); }
+      setTimeout(next, 2500);
+    }, 45000);
+  }
+  next();
+}
+
+/* ---------- KiwiSDR and Safecast: no browser-reachable route, checked with real fetches from the live origin ---------- */
+function loadDown() {
+  sdown('sg_celestrak', 'source down (checked ' + CHECKED + '): celestrak.org sends no CORS header and answered 503 to a browser request. The TLE API supplies the element sets instead.');
+  sdown('sg_kiwi', 'source down (checked ' + CHECKED + '): the public receiver list is http only (blocked on an https page) and the map list sends no CORS header. Nothing is requested.');
+  sdown('sg_safe', 'source down (checked ' + CHECKED + '): api.safecast.org answers a browser request from this origin with no CORS header. Nothing is requested.');
+}
+
+/* ---------- reference: undersea cables (snapshot file) ---------- */
+function loadCables() {
+  sset('ref_cable', 'loading');
+  jget('data/cables.json', function (e, j) {
+    if (e) { sdown('ref_cable', e); refreshUI(); return; }
+    var c = (j && j.cables) || [], i, pos = [], n = 0, snap = clean(j && j.meta && j.meta.snapshot_utc, 30);
+    for (i = 0; i < c.length && n < 800; i++) {
+      var cb = c[i]; if (!cb || !cb.lines || !cb.lines.length) continue; var s2, j2, mid = null;
+      for (s2 = 0; s2 < cb.lines.length; s2++) { var ln = cb.lines[s2]; for (j2 = 1; j2 < ln.length; j2++) { var a = latLonToVec3(ln[j2 - 1][1], ln[j2 - 1][0], 1.006), b = latLonToVec3(ln[j2][1], ln[j2][0], 1.006); if (Math.abs(ln[j2][0] - ln[j2 - 1][0]) > 90) continue; pos.push(a.x, a.y, a.z, b.x, b.y, b.z); } if (s2 === 0 && ln.length) mid = ln[Math.floor(ln.length / 2)]; }
+      if (mid) { var cid = String(cb.id || '').replace(/[^a-z0-9-]/gi, ''); mk('ref_cable', mid[1], mid[0], 0xff7aa8, 0.006, { name: clean(cb.name, 80), srcName: 'TeleGeography Submarine Cable Map', srcHost: 'submarinecablemap.com', srcT: Date.parse(snap) || 0, snap: snap, link: safeUrl('https://www.submarinecablemap.com/submarine-cable/' + encodeURIComponent(cid)), fields: fields([['Cable', clean(cb.name, 80)], ['Segments', cb.lines.length], ['Snapshot', snap]]) }, true); n++; }
+    }
+    var g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+    var ln2 = new THREE.LineSegments(g, new THREE.LineBasicMaterial({ color: 0xff7aa8, transparent: true, opacity: 0.55 })); scene.add(ln2); LAYERS.ref_cable.meshes.push(ln2); ln2.visible = LAYERS.ref_cable.active;
+    SOURCES.ref_cable.snap = snap; sset('ref_cable', 'fresh'); SOURCES.ref_cable.lastFetch = NOW(); refreshUI();
+  }, 40000);
+}
+
+/* ---------- reference: tech nodes, each placed only if an official page states the place (checked 2026-11-25) ---------- */
+var TECH = [
+  ['TSMC, Hsinchu Science Park (HQ, Fab 12A)', 24.78, 121.01, 'https://www.tsmc.com/english/aboutTSMC/TSMC_Fabs', 'page lists the Hsinchu Science Park address'],
+  ['TSMC, Southern Taiwan Science Park, Tainan (fabs)', 23.10, 120.28, 'https://www.tsmc.com/english/aboutTSMC/TSMC_Fabs', 'page lists the Tainan fab address'],
+  ['SK hynix, Icheon (HQ address)', 37.27, 127.44, 'https://www.skhynix.com/', 'home page footer lists the Icheon-si address'],
+  ['NVIDIA, Santa Clara (HQ address)', 37.37, -121.96, 'https://www.nvidia.com/en-eu/about-nvidia/terms-of-service/', 'terms page gives the Santa Clara address'],
+  ['AMD, Santa Clara (HQ)', 37.38, -121.97, 'https://www.amd.com/en/legal/privacy.html', 'privacy page: headquarters on Augustine Drive, Santa Clara'],
+  ['GlobalFoundries, Malta New York (fab)', 42.97, -73.75, 'https://gf.com/about-gf/', 'page: fab in Malta, New York'],
+  ['ASML, Veldhoven (HQ)', 51.41, 5.40, 'https://www.asml.com/en/company/about-asml/locations', 'page: headquartered in Veldhoven'],
+  ['Cerebras, Sunnyvale (HQ address)', 37.39, -122.04, 'https://www.cerebras.ai/contact', 'contact page gives the Sunnyvale address'],
+  ['Graphcore, Bristol (HQ)', 51.45, -2.59, 'https://www.graphcore.ai/contact', 'contact page: Bristol HQ address'],
+  ['Boston Dynamics, Waltham (office)', 42.37, -71.24, 'https://bostondynamics.com/careers/', 'careers page lists the Waltham office'],
+  ['KUKA, Augsburg (HQ)', 48.35, 10.90, 'https://www.kuka.com/en-de/company', 'page: headquartered in Augsburg']
+];
+var TECH_REMOVED = 'Removed after the 2026-11-25 check (page blocked, missing, or place not in the page text): Samsung Giheung, Intel Santa Clara, Intel Chandler, Micron Boise, Broadcom San Jose, Qualcomm San Diego, SMIC Shanghai, Groq Mountain View, Yaskawa Kitakyushu, FANUC Oshino, Tesla Austin, ABB Robotics Zurich.';
+function loadTech() {
+  var i; clearLayer('ref_tech');
+  for (i = 0; i < TECH.length; i++) { var t = TECH[i]; mk('ref_tech', t[1], t[2], 0x4ade80, 0.009, { name: t[0], srcName: 'Official company page', srcHost: (safeUrl(t[3]) || {}).host || 'none', srcT: Date.parse(CHECKED) || 0, link: safeUrl(t[3]),
+    fields: fields([['Official page states', t[4]], ['Position', 'city level, not the exact building'], ['Checked', CHECKED]]) }, true); }
+  SOURCES.ref_tech.lastFetch = NOW(); SOURCES.ref_tech.status = 'fresh'; SOURCES.ref_tech.err = TECH_REMOVED;
+}
+
+/* ---------- reference: Launch Library 2, cached inside its rate limit, backoff on 429 ---------- */
+var LL_KEY = 'av-ll2-launch';
+function ingestLL2(j, cacheT, stale) {
+  clearLayer('ref_ll2'); var r = (j && j.results) || [], i, pads = {}, now = NOW();
+  for (i = 0; i < r.length && i < 40; i++) {
+    var l = r[i] || {}, pad = l.pad || {}, lat = num(pad.latitude, -90, 90, null), lon = num(pad.longitude, -180, 180, null); if (lat === null || lon === null) continue;
+    var net = Date.parse(l.net) || 0; if (stale && net < now - 3 * 3600000) continue;
+    var key = lat.toFixed(3) + ',' + lon.toFixed(3), P = pads[key] || (pads[key] = { lat: lat, lon: lon, pad: clean(pad.name, 60) + ', ' + clean((pad.location || {}).name, 60), list: [] });
+    var iu = l.infoURLs || [], lk = null, q; for (q = 0; q < iu.length && !lk; q++) lk = safeUrl(iu[q] && iu[q].url);
+    P.list.push({ name: clean(l.name, 90), net: net, status: clean((l.status || {}).name, 30), prov: clean((l.launch_service_provider || {}).name, 50), link: lk });
+  }
+  var k, n = 0;
+  for (k in pads) { if (!pads.hasOwnProperty(k)) continue; var p = pads[k]; p.list.sort(function (a, b) { return a.net - b.net; }); var f = p.list[0];
+    mk('ref_ll2', p.lat, p.lon, 0xff8a3d, 0.012, { name: p.pad, srcName: 'Launch Library 2 (The Space Devs)', srcHost: 'll.thespacedevs.com', srcT: cacheT || NOW(), link: f.link, next: f.net, launches: p.list,
+      fields: fields([['Next launch', f.name], ['NET', utc(f.net)], ['Status', f.status], ['Provider', f.prov], ['Upcoming at this pad', p.list.length]]) }, true); n++; }
+  return n;
+}
+function loadLL2() {
+  var S = SOURCES.ref_ll2, fresh = cget(LL_KEY, 1200);
+  if (fresh) { bkOk('ll2'); ingestLL2(fresh.d, fresh.t, false); S.status = 'fresh'; S.lastFetch = fresh.t; S.cached = true; S.err = ''; refreshUI(); return; }
+  var bk = bkGet('ll2'), old = cget(LL_KEY, 7 * 86400);
+  if (bk) { if (old) { ingestLL2(old.d, old.t, true); S.status = 'err'; S.lastFetch = old.t; S.cached = true; S.err = 'rate limited (HTTP 429), next request in ' + mins(bk.until - NOW()) + ', showing cache'; } else sdown('ref_ll2', 'rate limited (HTTP 429), next request in ' + mins(bk.until - NOW()) + ', no cache yet'); refreshUI(); return; }
+  jget('https://ll.thespacedevs.com/2.2.0/launch/upcoming/?limit=30', function (e, j) {
+    if (e) { var w = bkFail('ll2'); if (old) { ingestLL2(old.d, old.t, true); S.status = 'err'; S.lastFetch = old.t; S.cached = true; S.err = clean(e, 40) + ', backing off ' + mins(w) + ', showing cache'; } else sdown('ref_ll2', clean(e, 40) + ', backing off ' + mins(w) + ', no cache yet'); refreshUI(); return; }
+    bkOk('ll2'); cset(LL_KEY, j); S.cached = false; ingestLL2(j, NOW(), false); sset('ref_ll2', 'fresh'); refreshUI();
+  }, 40000);
+}
+
+/* ---------- reference: OpenStreetMap through Overpass (user presses LOAD OSM HERE; 6 h cache per area) ---------- */
+var OSMQ = { ref_hosp: 'node["amenity"="hospital"]', ref_water: 'node["amenity"="drinking_water"]', ref_shelter: 'node["amenity"="shelter"]', ref_power: 'nwr["power"="plant"]' };
+var OSM_HOSTS = ['https://maps.mail.ru/osm/tools/overpass/api/interpreter', 'https://overpass-api.de/api/interpreter'];
+function viewLatLon() { var p = camera.position, r = Math.sqrt(p.x * p.x + p.y * p.y + p.z * p.z) || 1, lat = Math.asin(p.y / r) * 180 / Math.PI, th = Math.atan2(p.z, -p.x), lon = th * 180 / Math.PI - 180; while (lon < -180) lon += 360; return [lat, lon]; }
+function loadOSM(keys) {
+  var vl = viewLatLon(), h = 5, bb = [Math.max(-89, vl[0] - h), Math.max(-180, vl[1] - h * 1.5), Math.min(89, vl[0] + h), Math.min(180, vl[1] + h * 1.5)], S = SOURCES.ref_osm, bbs = bb.map(function (x) { return x.toFixed(2); }).join(',');
+  S.status = 'loading'; var todo = keys.slice(), ok = 0, fail = 0, lastErr = '';
+  function one() {
+    if (!todo.length) { if (ok) sset('ref_osm', 'fresh'); else sdown('ref_osm', 'no Overpass server answered a browser request (' + lastErr + ')'); refreshUI(); return; }
+    var k = todo.shift(), ck = 'av-osm-' + k + '-' + bbs, c = cget(ck, 6 * 3600);
+    if (c) { ingestOSM(k, c.d, c.t); ok++; S.lastFetch = c.t; setTimeout(one, 0); return; }
+    var q = '[out:json][timeout:25];' + OSMQ[k] + '(' + bbs + ');out center 150;', hi = 0;
+    (function tryHost() {
+      jget(OSM_HOSTS[hi] + '?data=' + encodeURIComponent(q), function (e, j) {
+        if (e && ++hi < OSM_HOSTS.length) { tryHost(); return; }
+        if (e) { fail++; lastErr = e; setTimeout(one, 1500); return; }
+        cset(ck, j); ingestOSM(k, j, NOW()); ok++; setTimeout(one, 1500);
+      }, 35000);
+    })();
+  }
+  one();
+}
+function ingestOSM(k, j, t) {
+  clearLayer(k); var el = (j && j.elements) || [], i, n = 0, col = { ref_hosp: 0xff6b81, ref_water: 0x38bdf8, ref_shelter: 0xfb923c, ref_power: 0xfacc15 }[k];
+  for (i = 0; i < el.length && n < 150; i++) { var e = el[i] || {}, tg = e.tags || {}, lat = e.lat !== undefined ? e.lat : (e.center || {}).lat, lon = e.lon !== undefined ? e.lon : (e.center || {}).lon; if (lat === undefined) continue;
+    var m = mk(k, lat, lon, col, 0.007, { name: clean(tg.name || tg['name:en'] || LDEF[k].label, 80), srcName: 'OpenStreetMap contributors (Overpass)', srcHost: 'openstreetmap.org', srcT: t, link: safeUrl('https://www.openstreetmap.org/' + (e.type === 'node' || e.type === 'way' || e.type === 'relation' ? e.type : 'node') + '/' + String(num(e.id, 0, 1e13, 0))),
+      fields: fields([['OSM id', e.type + ' ' + num(e.id, 0, 1e13, 0)], ['Operator', tg.operator], ['Output', tg['plant:output:electricity']], ['Source', tg['plant:source']], ['Capacity', tg.capacity], ['Position', 'area around the current view']]) }, true); if (m) n++; }
+  return n;
+}
+
+/* ---------- fading, panel, summary ---------- */
+function fadeAll() {
+  var now = NOW(), k, i, ls = ['sg_gdacs', 'sg_ioda', 'sg_wx', 'sg_sat', 'sg_kiwi', 'sg_safe'];
+  for (i = 0; i < ls.length; i++) { k = ls[i]; var mx = LDEF[k].maxAge; DATA[k].forEach(function (u) { var a = u.srcT ? (now - u.srcT) / mx : 0; u._m.material.opacity = Math.max(0.15, Math.min(1, 1 - a * 0.85)); }); }
+  allMeshes.forEach(function (m) { var u = m.userData; if (!u || !m.material) return; if (u.type === 'seismic' && u.t) m.material.opacity = Math.max(0.15, Math.min(0.9, 0.9 - ((now - u.t) / 86400000) * 0.75)); else if (u.type === 'eonet' && u.date) { var t = Date.parse(u.date); if (t) m.material.opacity = Math.max(0.15, Math.min(0.88, 0.88 - ((now - t) / (14 * 86400000)) * 0.7)); } });
+}
+function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt !== undefined) e.textContent = txt; return e; }
+function prow(k, v) { var r = el('div', 'pn-row'); r.appendChild(el('span', 'k', k)); r.appendChild(el('span', 'v', String(v))); return r; }
+function panelSignal(ud) {
+  var body = document.getElementById('pan-body'); while (body.firstChild) body.removeChild(body.firstChild);
+  document.getElementById('panel').classList.add('open'); document.getElementById('pan-title').textContent = ud.kind === 'reference' ? 'REFERENCE NODE' : 'SIGNAL NODE';
+  var L = LAYERS[ud.layer], s = SOURCES[ud.layer] || SOURCES.ref_osm, tp = el('span', 'pn-type', ud.label); tp.style.background = 'rgba(128,160,255,.14)'; tp.style.color = L.col; body.appendChild(tp);
+  body.appendChild(el('div', 'pn-name', ud.name)); body.appendChild(el('div', 'pn-sub', ud.lat.toFixed(3) + ', ' + ud.lon.toFixed(3)));
+  var i; for (i = 0; i < (ud.fields || []).length; i++) if (ud.fields[i][1] !== '') body.appendChild(prow(ud.fields[i][0], ud.fields[i][1]));
+  if (ud.kind === 'signal' || ud.srcT) { body.appendChild(prow('Signal time', utc(ud.srcT))); var ag = prow('Signal age', ageS(ud.srcT)); ag.id = 'sig-age'; body.appendChild(ag); }
+  body.appendChild(prow('Source', ud.srcName + ' (' + ud.srcHost + ')'));
+  body.appendChild(prow('Source state', s.status === 'fresh' ? (s.cached ? 'cache written ' + ageS(s.lastFetch) + ' ago' : 'live, fetched ' + ageS(s.lastFetch) + ' ago') : (s.status === 'down' ? 'source down, checked ' + s.checked : s.status)));
+  if (ud.kind === 'reference') body.appendChild(prow('Status', 'reference, not real time'));
+  if (ud.launches) { var k; for (k = 0; k < ud.launches.length && k < 6; k++) body.appendChild(prow(utc(ud.launches[k].net), ud.launches[k].name)); }
+  var d = el('div', 'wikibox'); if (ud.link) { var a = el('a', '', ud.link.host); a.href = ud.link.href; a.rel = 'noopener noreferrer'; a.target = '_blank'; a.style.color = L.col; d.appendChild(a); } else d.appendChild(el('span', '', 'no official link stored')); body.appendChild(d);
+  body.appendChild(el('div', 'pn-src', 'Untrusted data shown as plain text. Educational use. AVIDAA EARTH'));
+}
+var CONT = [['Oceania', [[112, -10], [155, -10], [180, -12], [180, -48], [165, -48], [112, -40]]], ['Europe', [[-25, 34], [-10, 35], [10, 35], [26, 35], [28, 41], [40, 41], [48, 42], [50, 52], [60, 60], [60, 71], [30, 72], [10, 72], [-25, 66]]],
+  ['Africa', [[-18, 35], [10, 37], [32, 32], [35, 30], [43, 12], [52, 12], [51, -2], [40, -16], [35, -26], [20, -35], [12, -18], [8, 4], [-10, 5], [-18, 15]]],
+  ['North America', [[-168, 66], [-140, 70], [-100, 73], [-62, 60], [-52, 47], [-67, 44], [-76, 35], [-81, 25], [-80, 9], [-92, 15], [-105, 20], [-117, 32], [-125, 40], [-130, 55], [-168, 54]]], ['North America', [[-73, 60], [-45, 59], [-20, 70], [-20, 83], [-60, 83], [-73, 78]]],
+  ['South America', [[-80, 9], [-72, 12], [-60, 10], [-50, 0], [-35, -6], [-40, -23], [-58, -38], [-65, -55], [-72, -52], [-74, -40], [-71, -18], [-81, -5]]],
+  ['Asia', [[26, 12], [34, 32], [44, 41], [50, 52], [60, 60], [60, 72], [180, 72], [180, -5], [141, -11], [120, -11], [95, -8], [90, 5], [75, 5], [60, 12], [52, 12], [43, 12]]]];
+var CNAMES = ['Africa', 'Antarctica', 'Asia', 'Europe', 'North America', 'Oceania', 'South America', 'Ocean / other'];
+function inPoly(x, y, p) { var i, j, c = false; for (i = 0, j = p.length - 1; i < p.length; j = i++) { if (((p[i][1] > y) !== (p[j][1] > y)) && (x < (p[j][0] - p[i][0]) * (y - p[i][1]) / (p[j][1] - p[i][1]) + p[i][0])) c = !c; } return c; }
+function continentOf(lon, lat) { var i; if (lat < -60) return 'Antarctica'; for (i = 0; i < CONT.length; i++) if (inPoly(lon, lat, CONT[i][1])) return CONT[i][0]; return 'Ocean / other'; }
+/* layers of the split: [id, level, how to read the nodes] ; existing page layers are read from their own meshes */
+function liveList() {
+  var out = [], k;
+  for (k in LDEF) if (LDEF.hasOwnProperty(k) && LDEF[k].kind === 'signal') out.push({ id: k, name: LDEF[k].label, level: LDEF[k].level, st: SOURCES[k].status, down: SOURCES[k].status === 'down', items: DATA[k], fresh: SOURCES[k].status === 'fresh' });
+  function pageItems(t) { var seen = [], s = {}; allMeshes.forEach(function (m) { var u = m.userData; if (u && u.type === t && !s[u.lat + ',' + u.lon + u.name]) { s[u.lat + ',' + u.lon + u.name] = 1; seen.push(u); } }); return seen; }
+  out.push({ id: 'seismic', name: 'USGS Earthquakes', level: 'people', st: SOURCES.seismic.status, items: pageItems('seismic'), fresh: SOURCES.seismic.status === 'fresh' });
+  out.push({ id: 'eonet', name: 'NASA EONET Events', level: 'people', st: SOURCES.eonet.status, items: pageItems('eonet'), fresh: SOURCES.eonet.status === 'fresh' });
+  var iss = issMesh && issMesh.userData ? [issMesh.userData] : []; out.push({ id: 'iss', name: 'ISS (wheretheiss.at)', level: 'machine', st: SOURCES.iss.status, items: iss, fresh: SOURCES.iss.status === 'fresh' });
+  return out;
+}
+function pct(a, b) { return b > 0 ? (100 * a / b).toFixed(1) + '%' : '0%'; }
+function computeSplit() {
+  var L = liveList(), i, m = 0, p = 0, per = {}, c, j;
+  for (c = 0; c < CNAMES.length; c++) per[CNAMES[c]] = { machine: 0, people: 0 };
+  for (i = 0; i < L.length; i++) { var l = L[i], n = l.fresh ? l.items.length : 0; l.n = n; if (l.level === 'machine') m += n; else p += n;
+    if (l.fresh) for (j = 0; j < l.items.length; j++) { var u = l.items[j], cn = u.cont || (typeof u.lat === 'number' && typeof u.lon === 'number' ? continentOf(u.lon, u.lat) : null); if (cn) per[cn][l.level]++; } }
+  return { layers: L, machine: m, people: p, per: per };
+}
+function values(l) {
+  var it = l.items, i, n = it.length; if (l.down) return 'source down, checked ' + CHECKED; if (!n) return l.st === 'fresh' ? 'no nodes' : 'no data yet (' + l.st + ')';
+  if (l.id === 'seismic') { var mx = 0; it.forEach(function (u) { var g = parseFloat(u.mag); if (g > mx) mx = g; }); return 'strongest M ' + mx.toFixed(1); }
+  if (l.id === 'sg_gdacs') { var r = 0, o = 0; it.forEach(function (u) { var a = (u.fields[1] || [])[1]; if (a === 'Red') r++; else if (a === 'Orange') o++; }); return 'Red ' + r + ', Orange ' + o; }
+  if (l.id === 'sg_ioda') { var ev = 0; it.forEach(function (u) { ev += u.ev || 0; }); return ev + ' outage events in 24 h'; }
+  if (l.id === 'sg_wx') { var t = 0, c = 0; it.forEach(function (u) { if (typeof u.temp === 'number') { t += u.temp; c++; } }); return c ? 'mean ' + (t / c).toFixed(1) + ' C over ' + c + ' stations' : 'no temperatures'; }
+  if (l.id === 'sg_sat') { var hi = 0; it.forEach(function (u) { if (u.alt > 2000) hi++; }); return 'low orbit ' + (n - hi) + ', higher ' + hi; }
+  if (l.id === 'eonet') { var cs = {}, top = '', tn = 0; it.forEach(function (u) { var c2 = u.category || 'other'; cs[c2] = (cs[c2] || 0) + 1; if (cs[c2] > tn) { tn = cs[c2]; top = c2; } }); return 'most common: ' + clean(top, 30) + ' (' + tn + ')'; }
+  return n + ' objects';
+}
+function panelSummary() {
+  var body = document.getElementById('pan-body'); while (body.firstChild) body.removeChild(body.firstChild);
+  document.getElementById('panel').classList.add('open'); document.getElementById('pan-title').textContent = 'SIGNAL SPLIT'; var S = computeSplit(), tot = S.machine + S.people, i, c;
+  body.appendChild(el('div', 'pn-name', 'Machines alive vs people active'));
+  var sp = el('div', 'sig-split'), a = el('div', 'sig-box'), b = el('div', 'sig-box'); a.appendChild(el('b', 'sig-big', String(S.machine))); a.appendChild(el('span', '', 'machines alive ' + pct(S.machine, tot))); b.appendChild(el('b', 'sig-big', String(S.people))); b.appendChild(el('span', '', 'people active ' + pct(S.people, tot))); sp.appendChild(a); sp.appendChild(b); body.appendChild(sp);
+  var bar = el('div', 'sig-bar'), x = el('span', 'sig-m'), y = el('span', 'sig-p'); x.style.width = (tot ? 100 * S.machine / tot : 50) + '%'; y.style.width = (tot ? 100 * S.people / tot : 50) + '%'; bar.appendChild(x); bar.appendChild(y); bar.setAttribute('role', 'img'); bar.setAttribute('aria-label', 'machines ' + pct(S.machine, tot) + ', people ' + pct(S.people, tot)); body.appendChild(bar);
+  body.appendChild(el('div', 'pn-sub', 'Only layers whose source is live now count. Reference layers and sources that are down are not counted.'));
+  var t1 = el('table', 'sig-t'), h1 = el('tr'); ['Layer', 'Count', 'Of level', 'Of all'].forEach(function (h) { h1.appendChild(el('th', '', h)); }); t1.appendChild(h1);
+  for (i = 0; i < S.layers.length; i++) { var l = S.layers[i], r = el('tr'), lv = l.level === 'machine' ? S.machine : S.people, nm = el('td'); nm.appendChild(el('div', '', l.name + ' (' + l.level + ')')); nm.appendChild(el('small', 'sig-err sig-val', values(l))); r.appendChild(nm); r.appendChild(el('td', 'n', String(l.n))); r.appendChild(el('td', 'n', pct(l.n, lv))); r.appendChild(el('td', 'n', pct(l.n, tot))); t1.appendChild(r); }
+  body.appendChild(t1);
+  body.appendChild(el('div', 'pn-name', 'Worldwide coverage per continent'));
+  var t2 = el('table', 'sig-t'), h2 = el('tr'); ['Continent', 'Machines', 'People', 'Share'].forEach(function (h) { h2.appendChild(el('th', '', h)); }); t2.appendChild(h2); var sm = 0, spp = 0;
+  for (c = 0; c < CNAMES.length; c++) { var pc = S.per[CNAMES[c]], rr = el('tr'); sm += pc.machine; spp += pc.people; rr.appendChild(el('td', '', CNAMES[c])); rr.appendChild(el('td', 'n', String(pc.machine))); rr.appendChild(el('td', 'n', String(pc.people))); rr.appendChild(el('td', 'n', pct(pc.machine + pc.people, tot))); t2.appendChild(rr); }
+  var tr = el('tr', 'sig-tot'); tr.appendChild(el('td', '', 'Worldwide')); tr.appendChild(el('td', 'n', String(sm))); tr.appendChild(el('td', 'n', String(spp))); tr.appendChild(el('td', 'n', pct(sm + spp, tot))); t2.appendChild(tr); body.appendChild(t2);
+  body.appendChild(el('div', 'pn-sub', 'Continents use coarse polygons, so points near borders can land on the neighbour. Satellites count the point below them now. IODA nodes sit on the country centroid.'));
+  body.appendChild(el('div', 'pn-name', 'Sources'));
+  var k, t3 = el('table', 'sig-t'), h3 = el('tr'); ['Source', 'State', 'Age'].forEach(function (h) { h3.appendChild(el('th', '', h)); }); t3.appendChild(h3);
+  for (k in SRC) { if (!SRC.hasOwnProperty(k)) continue; var s = SOURCES[k], r3 = el('tr'), st = el('td'); r3.appendChild(el('td', '', s.label + (s.ref ? ' (reference)' : ''))); st.appendChild(el('span', '', s.status === 'fresh' ? (s.cached ? 'cache' : 'live') : (s.status === 'down' ? 'source down, checked ' + s.checked : s.status))); if (s.err) st.appendChild(el('small', 'sig-err', s.err)); r3.appendChild(st); r3.appendChild(el('td', '', s.lastFetch ? ageS(s.lastFetch) : '-')); t3.appendChild(r3); }
+  body.appendChild(t3);
+  body.appendChild(el('div', 'pn-src', 'Untrusted data shown as plain text. Stripped invisible characters: ' + STATS.stripped + '. Links dropped: ' + STATS.droppedUrls + '. Links kept: ' + STATS.keptUrls + '. Records read: ' + STATS.records + '.'));
+  currentPanel = { type: 'sigsummary', sig: true, summary: true };
+}
+function refreshUI() { try { buildDrawer(); buildRadar(); } catch (e) {} }
+
+/* ---------- layout: the drawer, the side panel and the radar never sit under the header, the ticker or each other ---------- */
+var radarAuto = false;
+function fitLayout() {
+  var hdr = document.getElementById('hdr'), tk = document.getElementById('ticker'), dr = document.getElementById('drawer'), pn = document.getElementById('panel'), rd = document.getElementById('radar'); if (!hdr || !dr || !pn) return;
+  var h = Math.ceil(hdr.getBoundingClientRect().bottom), tb = tk ? Math.max(0, Math.ceil(innerHeight - tk.getBoundingClientRect().top)) : 34, foot = 0, f = document.querySelector('.av-footer--bar'); if (f) foot = Math.ceil(f.getBoundingClientRect().height);
+  var bot = Math.max(tb, foot) + (f && tk && Math.abs(f.getBoundingClientRect().top - tk.getBoundingClientRect().bottom) < 4 ? foot : 0);
+  dr.style.top = h + 'px'; dr.style.bottom = bot + 'px';
+  var open = pn.classList.contains('open');
+  if (rd) { if (open && !rd.classList.contains('collapsed')) { rd.classList.add('collapsed'); radarAuto = true; } else if (!open && radarAuto) { rd.classList.remove('collapsed'); radarAuto = false; } }
+  var rt = rd && open ? Math.floor(rd.getBoundingClientRect().top) : innerHeight - bot;
+  pn.style.top = (h + 10) + 'px'; pn.style.maxHeight = Math.max(140, Math.min(640, rt - h - 20)) + 'px';
+}
+/* ---------- hooks into the page ---------- */
+function hook() {
+  var orig = window.openPanel;
+  window.openPanel = function (ud) {
+    if (ud && ud.sig) { currentPanel = ud; if (ud.summary) panelSummary(); else panelSignal(ud); return; }
+    orig(ud);
+    if (ud && (ud.type === 'seismic' || ud.type === 'eonet')) setTimeout(function () { var b = document.getElementById('pan-body'); if (!b || b.querySelector('#sig-age2')) return; var t = ud.type === 'seismic' ? ud.t : Date.parse(ud.date); if (!t) return; var r = prow('Signal age', ageS(t) + ' (signal time ' + utc(t) + ')'); r.id = 'sig-age2'; b.appendChild(r); }, 500);
+  };
+  var ob = window.buildDrawer;
+  window.buildDrawer = function () { ob(); var rows = document.querySelectorAll('#drawer-content .layer-row'), i; for (i = 0; i < rows.length; i++) { rows[i].setAttribute('tabindex', '0'); rows[i].setAttribute('role', 'button'); } };
+  var rt0 = document.querySelector('#radar .radar-title'); if (rt0) { rt0.setAttribute('tabindex', '0'); rt0.setAttribute('role', 'button'); rt0.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); rt0.click(); } }); }
+  var hb = document.querySelector('.drawer-hdr div'), b1 = document.createElement('button'), b2 = document.createElement('button');
+  b1.textContent = 'SIGNAL SPLIT'; b1.title = 'Machines alive vs people active, coverage per continent'; b1.addEventListener('click', function () { openPanel({ sig: true, summary: true, type: 'sigsummary' }); });
+  b2.textContent = 'LOAD OSM HERE'; b2.title = 'Load OpenStreetMap hospitals, drinking water, shelters and power plants around the current view'; b2.addEventListener('click', function () { ['ref_hosp', 'ref_water', 'ref_shelter', 'ref_power'].forEach(function (k) { LAYERS[k].active = true; }); loadOSM(['ref_hosp', 'ref_water', 'ref_shelter', 'ref_power']); refreshUI(); });
+  if (hb) { hb.appendChild(b1); hb.appendChild(b2); }
+}
+function start() {
+  setup(); hook(); loadDown(); loadTech(); loadCables();
+  refreshUI();
+  loadGDACS(); setInterval(loadGDACS, 900000);
+  setTimeout(function () { loadIODA(); setInterval(loadIODA, 600000); }, 3000);
+  setTimeout(function () { loadWX(); setInterval(loadWX, 1200000); }, 6000);
+  setTimeout(function () { loadLL2(); setInterval(loadLL2, 1200000); }, 9000);
+  setTimeout(function () { loadSats(); setInterval(loadSats, 7200000); }, 12000);
+  setInterval(function () { if (!window.__sigPaused) { placeSats(); } }, 5000);
+  setInterval(function () { fadeAll(); if (currentPanel && currentPanel.sig && !currentPanel.summary) { var a = document.getElementById('sig-age'); if (a) a.lastChild.textContent = ageS(currentPanel.srcT); } }, 15000);
+  fadeAll(); fitLayout(); setInterval(fitLayout, 400); window.addEventListener('resize', fitLayout);
+  window.__sig = { fit: fitLayout, data: DATA, ldef: LDEF, stats: STATS, clean: clean, safeUrl: safeUrl, ingest: { tle: ingestTLE, tle2omm: tle2omm, gdacs: ingestGDACS, ioda: ingestIODA, osm: ingestOSM, ll2: ingestLL2, obs: ingestObs }, split: computeSplit, continentOf: continentOf, panelSummary: panelSummary, fade: fadeAll, loadOSM: loadOSM, tech: TECH, cent: CENT, viewLatLon: viewLatLon, pause: function (v) { window.__sigPaused = v; } };
+}
+var tries = 0, iv = setInterval(function () {
+  tries++;
+  if (window.THREE && window.scene && window.LAYERS && window.addNode && window.camera && window.allMeshes && window.buildDrawer && window.buildRadar && window.SOURCES && typeof issMesh !== 'undefined') { clearInterval(iv); try { start(); } catch (e) { console.error('signals start failed', e && e.message); } }
+  else if (tries > 240) clearInterval(iv);
+}, 500);
+})();
+
+</script>
+<script id="av-pad-20261125">
+/* AVIDAA EARTH controller, keyboard and focus support. D-pad and left stick: rotate the globe, or move focus when the UI has focus. X select, O back, L1/R1 previous/next node, L2/R2 zoom, Square signal split, Triangle toggles globe/UI focus, Options pauses. */
+(function () {
+'use strict';
+var focusMode = false, hold = {}, prev = {}, paused = false, connected = false;
+function $(id) { return document.getElementById(id); }
+function vis(e) { if (e.disabled) return false; var r = e.getBoundingClientRect(); if (r.width <= 0 || r.height <= 0) return false; var cs = getComputedStyle(e); if (cs.visibility === 'hidden' || cs.display === 'none') return false;
+  var p = e.parentElement; while (p) { var c = getComputedStyle(p); if (c.display === 'none' || c.visibility === 'hidden') return false; p = p.parentElement; }
+  if (r.bottom < 0 || r.right < 0 || r.top > innerHeight || r.left > innerWidth) return false; return true; }
+function focusables() { var q = document.querySelectorAll('#hdr button, #hdr a[href], #hdr input, #drawer button, #drawer .layer-row, #panel button, #panel a[href], #radar .radar-title'), out = [], i; for (i = 0; i < q.length; i++) if (vis(q[i])) out.push(q[i]); return out; }
+function inUI(e) { return e && e !== document.body && !!e.closest && !!e.closest('#hdr, #drawer, #panel, #radar'); }
+function moveFocus(dx, dy) {
+  var cur = document.activeElement, list = focusables(), i; if (!list.length) return;
+  if (!inUI(cur) || list.indexOf(cur) < 0) { list[0].focus(); return; }
+  var cr = cur.getBoundingClientRect(), cx = cr.left + cr.width / 2, cy = cr.top + cr.height / 2, best = null, bs = 1e12;
+  for (i = 0; i < list.length; i++) { var e = list[i]; if (e === cur) continue; var r = e.getBoundingClientRect(), vx = r.left + r.width / 2 - cx, vy = r.top + r.height / 2 - cy;
+    if ((dx > 0 && vx <= 4) || (dx < 0 && vx >= -4) || (dy > 0 && vy <= 4) || (dy < 0 && vy >= -4)) continue;
+    var prim = dx ? Math.abs(vx) : Math.abs(vy), sec = dx ? Math.abs(vy) : Math.abs(vx), sc = prim + 2.5 * sec; if (sc < bs) { bs = sc; best = e; } }
+  if (best) { best.focus(); if (best.scrollIntoView) best.scrollIntoView({ block: 'nearest' }); }
+}
+function rot(dx, dy) { if (!window.camera) return; window.flyTarget = null; var sph = new THREE.Spherical().setFromVector3(camera.position); sph.theta -= dx * 0.03; sph.phi = Math.max(0.15, Math.min(Math.PI - 0.15, sph.phi + dy * 0.03)); camera.position.setFromSpherical(sph); camera.lookAt(0, 0, 0); if (window.controls && controls.update) controls.update(); }
+function zoom(f) { if (!window.camera) return; var d = camera.position.length() * f, lo = (window.controls && controls.minDistance) || 1.25, hi = (window.controls && controls.maxDistance) || 8; d = Math.max(lo, Math.min(hi, d)); camera.position.setLength(d); if (window.controls && controls.update) controls.update(); }
+function selectCenter() { if (!window.raycaster || !window.camera) return; raycaster.setFromCamera(new THREE.Vector2(0, 0), camera); var hits = raycaster.intersectObjects(allMeshes); if (hits.length) openPanel(hits[0].object.userData); }
+function panelOpen() { return $('panel').classList.contains('open'); }
+function drawerOpen() { return $('drawer').classList.contains('open'); }
+function back() {
+  if (panelOpen()) { closePanel(); return; }
+  if (drawerOpen()) { toggleDrawer(); return; }
+  if (focusMode || inUI(document.activeElement)) { focusMode = false; if (document.activeElement && document.activeElement.blur) document.activeElement.blur(); }
+}
+function select() { var cur = document.activeElement; if (inUI(cur)) { if (cur.click) cur.click(); } else selectCenter(); }
+function setPaused(v) { paused = v; window.__sigPaused = v; try { if (window.controls) controls.autoRotate = v ? false : controls.autoRotate; } catch (e) {} var r = $('sig-ret'); if (r) r.setAttribute('data-paused', v ? '1' : '0'); }
+function poll() {
+  var pads; try { pads = navigator.getGamepads ? navigator.getGamepads() : []; } catch (e) { pads = []; } var i;
+  for (i = 0; i < pads.length; i++) { var p = pads[i]; if (!p || !p.buttons) continue; if (!connected) { connected = true; $('sig-ret').style.display = 'block'; }
+    var b = function (n) { return p.buttons[n] && (p.buttons[n].pressed || p.buttons[n].value > 0.5); };
+    var ax = p.axes[0] || 0, ay = p.axes[1] || 0, rx = p.axes[2] || 0, ry = p.axes[3] || 0, ddx = (b(15) ? 1 : 0) - (b(14) ? 1 : 0), ddy = (b(13) ? 1 : 0) - (b(12) ? 1 : 0);
+    var ui = focusMode || inUI(document.activeElement);
+    if (!ui) { var dx = ddx + (Math.abs(ax) > 0.2 ? ax : 0) + (Math.abs(rx) > 0.2 ? rx : 0), dy = ddy + (Math.abs(ay) > 0.2 ? ay : 0) + (Math.abs(ry) > 0.2 ? ry : 0); if (dx || dy) rot(dx, dy); }
+    else {
+      var hx = ddx || (Math.abs(ax) > 0.6 ? (ax > 0 ? 1 : -1) : 0), hy = ddy || (Math.abs(ay) > 0.6 ? (ay > 0 ? 1 : -1) : 0), key = hx + ',' + hy, h = hold[i], t = Date.now();
+      if (!hx && !hy) hold[i] = null; else if (!h || h.key !== key) { hold[i] = { key: key, t0: t, last: t }; if (hx) moveFocus(hx, 0); else moveFocus(0, hy); } else if (t - h.t0 > 380 && t - h.last > 140) { h.last = t; if (hx) moveFocus(hx, 0); else moveFocus(0, hy); }
+    }
+    var edge = function (n, f) { var now = b(n); if (now && !prev[i + ':' + n]) f(); prev[i + ':' + n] = now; };
+    edge(0, select); edge(1, back);
+    edge(2, function () { openPanel({ sig: true, summary: true, type: 'sigsummary' }); });
+    edge(3, function () { focusMode = !focusMode; if (focusMode) { var l = focusables(); if (l.length) l[0].focus(); } else if (document.activeElement && document.activeElement.blur) document.activeElement.blur(); });
+    edge(4, function () { if (panelOpen()) cycleNode(-1); }); edge(5, function () { if (panelOpen()) cycleNode(1); });
+    if (b(6)) zoom(1.02); if (b(7)) zoom(0.98);
+    edge(9, function () { setPaused(!paused); });
+  }
+}
+document.addEventListener('keydown', function (e) {
+  var k = e.key, tg = (document.activeElement || {}).tagName || ''; if (/INPUT|TEXTAREA/.test(tg)) { if (k === 'Escape') document.activeElement.blur(); return; }
+  if (inUI(document.activeElement) && (k === 'Enter' || k === ' ') && document.activeElement.classList && document.activeElement.classList.contains('layer-row')) { e.preventDefault(); document.activeElement.click(); return; }
+  if (k === 'Escape') { back(); return; }
+  if (inUI(document.activeElement)) return;
+  if (k === 'ArrowLeft') { rot(-1.5, 0); e.preventDefault(); } else if (k === 'ArrowRight') { rot(1.5, 0); e.preventDefault(); } else if (k === 'ArrowUp') { rot(0, -1.5); e.preventDefault(); } else if (k === 'ArrowDown') { rot(0, 1.5); e.preventDefault(); }
+  else if (k === '+' || k === '=') zoom(0.9); else if (k === '-' || k === '_') zoom(1.1);
+});
+var ret = document.createElement('div'); ret.id = 'sig-ret'; ret.setAttribute('aria-hidden', 'true'); document.body.appendChild(ret);
+setInterval(poll, 16);
+window.__pad = { moveFocus: moveFocus, back: back, select: select, focusables: focusables, rot: rot, zoom: zoom, paused: function () { return paused; }, setPaused: setPaused, selectCenter: selectCenter };
+})();
+
+</script>
 <script id="mp-js-20261124">/* mobile pass 20261124: finger-size targets and readable text on phones and tablets */
 (function(){var MIN=44,t=null;
 function fix(){var vw=innerWidth;if(vw>1100||!document.body)return;
@@ -7458,7 +8006,7 @@ if(document.readyState==='complete')start();else addEventListener('load',start);
 addEventListener('resize',sched);})();</script><script id="av-shell-20261124">/* AVIDAA shell: shared header (or floating pill) + footer with the "Last updated" stamp. No outside calls, no tracking.
    Template tokens are replaced when a page is built: Earth --av-knowledge Knowledge 2026-11-24 06:36 */
 (function(){
-  var NAME='Earth',SECTOR='--av-knowledge',STAMP='2026-11-25 16:34',HOME='https://avidaa1.github.io/';
+  var NAME='Earth',SECTOR='--av-knowledge',STAMP='2026-11-25 18:10',HOME='https://avidaa1.github.io/';
   var ARROW='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   function build(){
     if(!document.body||document.querySelector('.av-footer'))return;
@@ -7511,7 +8059,7 @@ addEventListener('resize',sched);})();</script><script id="av-shell-20261124">/*
   }
   if(document.readyState==='complete'||document.readyState==='interactive')setTimeout(build,0);else addEventListener('DOMContentLoaded',function(){setTimeout(build,0);});
 })();
-</script><script id="av-brand-20261125">window.AV_BRAND_HUE=200;window.AV_BRAND_STATIC=1;
+</script><script id="av-brand-20261125">window.AV_BRAND_HUE=200;window.AV_BRAND_STATIC=1;window.AV_LIFE_DISABLED=1;
 /* AVIDAA brand signature v1: neon rainbow wordmark + home button, galactic glow, rotating LED chase borders.
    Reference: the original AVIDAA root page (rainbow gradient wordmark, #back-home pill, .rl-card LED ring with conic-gradient chase).
    Colours here are the brand layer; the shared shell keeps only layout/spacing/access. Each page keeps its topic hue for LEDs and glow.
